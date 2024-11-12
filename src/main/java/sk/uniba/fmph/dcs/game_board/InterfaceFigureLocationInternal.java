@@ -5,7 +5,6 @@ import sk.uniba.fmph.dcs.stone_age.Effect;
 import sk.uniba.fmph.dcs.stone_age.HasAction;
 
 public interface InterfaceFigureLocationInternal {
-
     boolean placeFigures(Player player, int figureCount);
 
     HasAction tryToPlaceFigures(Player player, int count);
@@ -17,5 +16,5 @@ public interface InterfaceFigureLocationInternal {
     HasAction tryToMakeAction(Player player);
 
     boolean newTurn();  // Returns true if the end of the game is implied by the given location
-}
 
+}

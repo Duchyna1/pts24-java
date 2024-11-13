@@ -10,7 +10,7 @@ public class PlayerResourcesAndFood {
     private final Map<Effect, Integer> resources;
 
     /**
-     * Initialise resources such that every resource is zero
+     * Initialise resources such that every resource is zero.
      */
     public PlayerResourcesAndFood() {
         resources = new HashMap<>();
@@ -20,8 +20,8 @@ public class PlayerResourcesAndFood {
     }
 
     /**
-     * @param resources - one of resources listed in Effect
-     * @return true if player has at least one of resource resources
+     * @param resources - one of resources listed in Effect.
+     * @return true if player has at least one of resource resources.
      */
     public boolean hasResources(final Effect resources) {
         return this.resources.get(resources) > 0;
@@ -29,10 +29,10 @@ public class PlayerResourcesAndFood {
 
 
     /**
-     * This function increases number of resources of type resource player has by one
+     * This function increases number of resources of type resource player has by one.
      *
-     * @param resources - one of resources listed in Effect
-     * @return true - always. Something else should check if player can take resource
+     * @param resources - one of resources listed in Effect.
+     * @return true - always. Something else should check if player can take resource.
      */
     public boolean takeResources(final Effect resources) {
         this.resources.put(resources, this.resources.get(resources) + 1);
@@ -40,10 +40,10 @@ public class PlayerResourcesAndFood {
     }
 
     /**
-     * This function decreases number of resources of type resource player has by one
+     * This function decreases number of resources of type resource player has by one.
      *
-     * @param resources - one of resources listed in Effect
-     * @return true if player has at least one resource of type resources
+     * @param resources - one of resources listed in Effect.
+     * @return true if player has at least one resource of type resources.
      */
     public boolean giveResources(final Effect resources) {
         if (this.hasResources(resources)) {
@@ -54,7 +54,7 @@ public class PlayerResourcesAndFood {
     }
 
     /**
-     * @return number of points player has from resources
+     * @return number of points player has from resources.
      */
     public int numberOfResourcesForFinalPoints() {
         int ans = 0;
@@ -65,7 +65,7 @@ public class PlayerResourcesAndFood {
     }
 
     /**
-     * @return state of PlayerResourcesAndFood. Only lists resources which are greater than zero
+     * @return state of PlayerResourcesAndFood. Only lists resources which are greater than zero.
      */
     public String state() {
         StringBuilder ans = new StringBuilder();

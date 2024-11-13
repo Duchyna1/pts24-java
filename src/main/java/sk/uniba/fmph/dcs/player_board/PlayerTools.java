@@ -17,7 +17,7 @@ public class PlayerTools {
     // usedTools[i] is true, if tools[i] was used this turn
 
     /**
-     * Initialise
+     * Initialise.
      */
     public PlayerTools() {
         Arrays.fill(usedTools, false);
@@ -25,14 +25,14 @@ public class PlayerTools {
     }
 
     /**
-     * Resets tools such that all are unused
+     * Resets tools such that all are unused.
      */
     public void newTurn() {
         Arrays.fill(usedTools, false);
     }
 
     /**
-     * Upgrades first tool, which can be upgraded
+     * Upgrades first tool, which can be upgraded.
      */
     public void addTool() {
         int min = maxStrength; // highest value multiple use tool can have is 4
@@ -54,11 +54,11 @@ public class PlayerTools {
     }
 
     /**
-     * Adds single use tool of value strength
+     * Adds single use tool of value strength.
      *
-     * @param strength - value of Single use tool
+     * @param strength - value of Single use tool.
      */
-    public void addSingleUseTool(int strength) {
+    public void addSingleUseTool(final int strength) {
         for (int i = maxMultipleUseTools; i < maxTools; i++) {
             if (tools[i] == 0) {
                 tools[i] = strength;
@@ -68,10 +68,10 @@ public class PlayerTools {
     }
 
     /**
-     * @param index - tools, which is going to be used
-     * @return value of tools[index] or null, if tools[index] cant be used
+     * @param index - tools, which is going to be used.
+     * @return value of tools[index] or null, if tools[index] cant be used.
      */
-    public Integer useTool(int index) {
+    public Integer useTool(final int index) {
         if (index < 0 || index > maxTools) {
             return null;
         }
@@ -92,10 +92,10 @@ public class PlayerTools {
     }
 
     /**
-     * @param goal - number we need to achieve
-     * @return - returns true if sum of available tools is at least goal
+     * @param goal - number we need to achieve.
+     * @return - returns true if sum of available tools is at least goal.
      */
-    public boolean hasSufficientTools(int goal) {
+    public boolean hasSufficientTools(final int goal) {
         int totalToolValue = 0;
         for (int i = 0; i < maxMultipleUseTools; i++) {
             if (!usedTools[i]) {
@@ -109,7 +109,7 @@ public class PlayerTools {
     }
 
     /**
-     * @return state of PlayerTools. Only includes Single use tools, if they are available
+     * @return state of PlayerTools. Only includes Single use tools, if they are available.
      */
     public String state() {
         StringBuilder ans = new StringBuilder();

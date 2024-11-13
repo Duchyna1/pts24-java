@@ -4,29 +4,31 @@ public class PlayerFigures {
     private int totalFigures;
     private int figures;
 
+    private final int startingFigures = 5;
+    private final int maxFigurines = 10;
+
     /**
      * Give player 5 starting figures.
      */
     public PlayerFigures() {
-        final int startingFigures = 5;
-        this.totalFigures = startingFigures;
-        this.figures = startingFigures;
+        this.totalFigures = this.startingFigures;
+        this.figures = this.startingFigures;
     }
 
     /**
      * Adds figure to players total figures. Has no effect when he has more than 10 figures.
      */
     public void addNewFigure() {
-        final int maxFigurines = 10;
-        if (this.totalFigures >= maxFigurines) {
+        if (this.totalFigures >= this.maxFigurines) {
             return;
         }
-
         this.totalFigures++;
     }
 
     /**
-     * @param count number of figures to be checked
+     * @param count
+     *            number of figures to be checked
+     *
      * @return true if player has at least count available figures
      */
     public boolean hasFigures(final int count) {
@@ -43,7 +45,9 @@ public class PlayerFigures {
     /**
      * Take count figures from player if available.
      *
-     * @param count number of figures to be taken
+     * @param count
+     *            number of figures to be taken
+     *
      * @return true if count figures available, otherwise returns false
      */
     public boolean takeFigures(final int count) {

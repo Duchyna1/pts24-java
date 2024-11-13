@@ -1,55 +1,60 @@
 package sk.uniba.fmph.dcs.game_board;
 
-import sk.uniba.fmph.dcs.stone_age.*;
 
-public class FigureLocationAdaptor implements InterfaceFigureLocation, InterfaceFigureLocationInternal {
+import sk.uniba.fmph.dcs.stone_age.ActionResult;
+import sk.uniba.fmph.dcs.stone_age.Effect;
+import sk.uniba.fmph.dcs.stone_age.HasAction;
+import sk.uniba.fmph.dcs.stone_age.InterfaceFigureLocation;
+import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
+
+final class FigureLocationAdaptor implements InterfaceFigureLocation, InterfaceFigureLocationInternal {
     @Override
-    public boolean placeFigures(Player player, int figureCount) {
+    public boolean placeFigures(final Player player, final int figureCount) {
         return false;
     }
 
     @Override
-    public HasAction tryToPlaceFigures(Player player, int count) {
+    public HasAction tryToPlaceFigures(final Player player, final int count) {
         return null;
     }
 
     @Override
-    public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
+    public ActionResult makeAction(final Player player, final Effect[] inputResources, final Effect[] outputResources) {
         return null;
     }
 
     @Override
-    public boolean skipAction(Player player) {
+    public boolean skipAction(final Player player) {
         return false;
     }
 
     @Override
-    public HasAction tryToMakeAction(Player player) {
+    public HasAction tryToMakeAction(final Player player) {
         return null;
     }
 
     @Override
-    public boolean placeFigures(PlayerOrder player, int figureCount) {
+    public boolean placeFigures(final PlayerOrder player, final int figureCount) {
         return false;
     }
 
     @Override
-    public HasAction tryToPlaceFigures(PlayerOrder player, int count) {
+    public HasAction tryToPlaceFigures(final PlayerOrder player, final int count) {
         return null;
     }
 
     @Override
-    public ActionResult makeAction(PlayerOrder player, Effect[] inputResources, Effect[] outputResources) {
+    public ActionResult makeAction(final PlayerOrder player, final Effect[] inputResources, final Effect[] outputResources) {
         return null;
     }
 
     @Override
-    public boolean skipAction(PlayerOrder player) {
+    public boolean skipAction(final PlayerOrder player) {
         return false;
     }
 
     @Override
-    public HasAction tryToMakeAction(PlayerOrder player) {
+    public HasAction tryToMakeAction(final PlayerOrder player) {
         return null;
     }
 

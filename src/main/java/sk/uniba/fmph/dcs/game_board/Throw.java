@@ -1,14 +1,15 @@
 package sk.uniba.fmph.dcs.game_board;
 
-import java.util.Random;
 
-public class Throw {
-    private int randomDice(){
-        return (int) (Math.random() * 6);
+public final class Throw {
+    private static final int DICESIDES = 6;
+    private int randomDice() {
+        return (int) (Math.random() * DICESIDES);
     }
-    public int[] hod(int dices){
+
+    public int[] hod(final int dices) {
         int[] res = new int[dices];
-        for(int i =0;i<dices;i++){
+        for (int i = 0; i < dices; i++) {
             res[i] = randomDice();
         }
         return res;

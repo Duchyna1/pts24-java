@@ -4,41 +4,52 @@ import sk.uniba.fmph.dcs.stone_age.ActionResult;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 import sk.uniba.fmph.dcs.stone_age.HasAction;
 
-public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal{
+public final class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
     private ToolMakerHutsFields fields;
 
-    public PlaceOnFieldsAdaptor(ToolMakerHutsFields fields) {
+    public PlaceOnFieldsAdaptor(final ToolMakerHutsFields fields) {
         this.fields = fields;
     }
 
     @Override
-    public boolean placeFigures(Player player, int figureCount) {
-        if (tryToPlaceFigures(player, figureCount) == HasAction.NO_ACTION_POSSIBLE) return false;
+    public boolean placeFigures(final Player player, final int figureCount) {
+        if (tryToPlaceFigures(player, figureCount) == HasAction.NO_ACTION_POSSIBLE) {
+            return false;
+        }
         return fields.placeOnFields(player);
     }
 
     @Override
-    public HasAction tryToPlaceFigures(Player player, int count) {
-        if (!player.playerBoard().hasFigures(count)) return HasAction.NO_ACTION_POSSIBLE;
-        if (count != 1) return HasAction.NO_ACTION_POSSIBLE;
-        if (!fields.canPlaceOnFields(player)) return HasAction.NO_ACTION_POSSIBLE;
+    public HasAction tryToPlaceFigures(final Player player, final int count) {
+        if (!player.playerBoard().hasFigures(count)) {
+            return HasAction.NO_ACTION_POSSIBLE;
+        }
+        if (count != 1) {
+            return HasAction.NO_ACTION_POSSIBLE;
+        }
+        if (!fields.canPlaceOnFields(player)) {
+            return HasAction.NO_ACTION_POSSIBLE;
+        }
         return HasAction.AUTOMATIC_ACTION_DONE;
     }
 
     @Override
-    public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
+    public ActionResult makeAction(final Player player, final Effect[] inputResources, final Effect[] outputResources) {
         boolean res = fields.actionFields(player);
-        if (res) return ActionResult.ACTION_DONE;
-        else return ActionResult.FAILURE;
+        if (res) {
+            return ActionResult.ACTION_DONE;
+        } else {
+            return ActionResult.FAILURE;
+        }
     }
 
     @Override
-    public boolean skipAction(Player player) {
+    public boolean skipAction(final Player player) {
         return false;
     }
 
     @Override
-    public HasAction tryToMakeAction(Player player) {
+    public HasAction tryToMakeAction(final Player player) {
         return null;
     }
 

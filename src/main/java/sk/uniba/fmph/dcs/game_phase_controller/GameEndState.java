@@ -9,49 +9,50 @@ import sk.uniba.fmph.dcs.stone_age.HasAction;
 
 import java.util.Collection;
 
-public class GameEndState implements InterfaceGamePhaseState {
+public final class GameEndState implements InterfaceGamePhaseState {
     @Override
-    public ActionResult placeFigures(PlayerOrder player, Location location, int figuresCount) {
+    public ActionResult placeFigures(final PlayerOrder player, final Location location, final int figuresCount) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult makeAction(PlayerOrder player, Location location, Collection<Effect> inputResources, Collection<Effect> outputResources) {
+    public ActionResult makeAction(final PlayerOrder player, final Location location,
+                                   final Collection<Effect> inputResources, final Collection<Effect> outputResources) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult skipAction(PlayerOrder player, Location location) {
+    public ActionResult skipAction(final PlayerOrder player, final Location location) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult useTools(PlayerOrder player, int toolIndex) {
+    public ActionResult useTools(final PlayerOrder player, final int toolIndex) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult noMoreToolsThisThrow(PlayerOrder player) {
+    public ActionResult noMoreToolsThisThrow(final PlayerOrder player) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult feedTribe(PlayerOrder player, Collection<Effect> resources) {
+    public ActionResult feedTribe(final PlayerOrder player, final Collection<Effect> resources) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult doNotFeedThisTurn(PlayerOrder player) {
+    public ActionResult doNotFeedThisTurn(final PlayerOrder player) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public ActionResult makeAllPlayersTakeARewardChoice(PlayerOrder player, Effect reward) {
+    public ActionResult makeAllPlayersTakeARewardChoice(final PlayerOrder player, final Effect reward) {
         return ActionResult.FAILURE;
     }
 
     @Override
-    public HasAction tryToMakeAutomaticAction(PlayerOrder player) {
+    public HasAction tryToMakeAutomaticAction(final PlayerOrder player) {
         return HasAction.WAITING_FOR_PLAYER_ACTION;
     }
 }

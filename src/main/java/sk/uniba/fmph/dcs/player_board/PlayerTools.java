@@ -1,11 +1,11 @@
 package sk.uniba.fmph.dcs.player_board;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class PlayerTools {
-    private int maxMultipleUseTools = 3; // total number of tool slots
-    private int maxSingleUseTools = 36; // total number of civilisation cards
-    private int maxTools = maxMultipleUseTools + maxSingleUseTools;
+    private final int maxMultipleUseTools = 3; // total number of tool slots
+    private final int maxSingleUseTools = 36; // total number of civilisation cards
+    private final int maxTools = maxMultipleUseTools + maxSingleUseTools;
 
     private int[] tools = new int[maxTools];
     // multiple use tools + single use tools,
@@ -15,25 +15,20 @@ public class PlayerTools {
     // for one time tools does not need to remember if they were used
     // usedTools[i] is true, if tools[i] was used this turn
 
-    public PlayerTools(){
-        for (int i = 0; i < maxMultipleUseTools; i++){
-            tools[i] = 0;
-            usedTools[i] = false;
-        }
-        for (int i = maxMultipleUseTools; i < maxTools; i++){
-            tools[i] = 0;
-        }
+    public PlayerTools() {
+        Arrays.fill(usedTools, false);
+        Arrays.fill(tools, 0);
     }
 
-    public void newTurn(){
+    public void newTurn() {
         Arrays.fill(usedTools, false);
     }
 
-    public void addTool(){
+    public void addTool() {
         int min = 4; // highest value multiple use tool can have is 4
         int minIndex = -1;
-        for (int i = 0; i < maxMultipleUseTools; i++){
-            if(tools[i] < min){
+        for (int i = 0; i < maxMultipleUseTools; i++) {
+            if (tools[i] < min) {
                 min = tools[i];
                 minIndex = i;
             }
@@ -42,33 +37,33 @@ public class PlayerTools {
         // this will find first tool, which is bellow level of other tools
         // and it will upgrade it
 
-        if(minIndex == -1){
+        if (minIndex == -1) {
             return;
         }
         tools[minIndex]++;
     }
 
-    public void addSingleUseTool(int strength){
-        for (int i = maxMultipleUseTools; i < maxTools; i++){
-            if (tools[i] == 0){
+    public void addSingleUseTool(int strength) {
+        for (int i = maxMultipleUseTools; i < maxTools; i++) {
+            if (tools[i] == 0) {
                 tools[i] = strength;
                 break;
             }
         }
     }
 
-    public Integer useTool(int index){
-        if (index < 0 || index > maxTools){
+    public Integer useTool(int index) {
+        if (index < 0 || index > maxTools) {
             return null;
         }
-        if (index < maxMultipleUseTools){
-            if(usedTools[index]){
+        if (index < maxMultipleUseTools) {
+            if (usedTools[index]) {
                 return null;
             }
             usedTools[index] = true;
             return tools[index];
         }
-        if(tools[index] == 0){
+        if (tools[index] == 0) {
             return null;
         }
 
@@ -78,33 +73,33 @@ public class PlayerTools {
     }
 
     // this function returns true, if player has enough value of available tools
-    public boolean hasSufficientTools(int goal){
+    public boolean hasSufficientTools(int goal) {
         int totalToolValue = 0;
-        for (int i = 0; i < maxMultipleUseTools; i++){
-            if (!usedTools[i]){
+        for (int i = 0; i < maxMultipleUseTools; i++) {
+            if (!usedTools[i]) {
                 totalToolValue += tools[i];
             }
         }
-        for (int i = maxMultipleUseTools; i < maxTools; i++){
+        for (int i = maxMultipleUseTools; i < maxTools; i++) {
             totalToolValue += tools[i];
         }
         return totalToolValue >= goal;
     }
 
-    public String state(){
+    public String state() {
         StringBuilder ans = new StringBuilder();
         ans.append("multiple use tools:");
-        for (int i = 0; i < maxMultipleUseTools; i++){
+        for (int i = 0; i < maxMultipleUseTools; i++) {
             ans.append(" tools[").append(i).append("] = ").append(tools[i]).append(", used = ").append(usedTools[i]);
-            if (i != maxMultipleUseTools - 1){
+            if (i != maxMultipleUseTools - 1) {
                 ans.append(",");
             }
         }
         ans.append("\nsingle use tools:");
-        for (int i = maxMultipleUseTools; i < maxTools; i++){
-            if (tools[i] != 0){
+        for (int i = maxMultipleUseTools; i < maxTools; i++) {
+            if (tools[i] != 0) {
                 ans.append(" tools[").append(i).append("] = ").append(tools[i]);
-                if (i != maxTools - 1){
+                if (i != maxTools - 1) {
                     ans.append(",");
                 }
             }

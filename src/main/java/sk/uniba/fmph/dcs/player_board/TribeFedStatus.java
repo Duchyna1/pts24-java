@@ -2,11 +2,13 @@ package sk.uniba.fmph.dcs.player_board;
 
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
+import java.util.Arrays;
+
 public class TribeFedStatus {
     private boolean tribeFed;
     private int fields;
-    private PlayerResourcesAndFood playerResourcesAndFood;
-    private PlayerFigures playerFigures;
+    private final PlayerResourcesAndFood playerResourcesAndFood;
+    private final PlayerFigures playerFigures;
 
     private final int startingFields = 0;
     private final int maxFields = 10;
@@ -31,10 +33,14 @@ public class TribeFedStatus {
     }
 
     /**
-     * Set tribe to unfed.
+     * Set tribe to unfed and give player food according to number of fields.
      */
     public void newTurn() {
         this.tribeFed = false;
+
+        Effect[] food = new Effect[this.fields];
+        Arrays.fill(food, Effect.FOOD);
+        this.playerResourcesAndFood.takeResources(food);
     }
 
     /**
@@ -43,29 +49,92 @@ public class TribeFedStatus {
      * @return true if tribe was successfully fed.
      */
     public boolean feedTribeIfEnoughFood() {
-        // TODO
-        return false;
+        if (this.tribeFed) {
+            return true;
+        }
+
+        Effect[] foodRequired = new Effect[this.playerFigures.getTotalFigures()];
+        Arrays.fill(foodRequired, Effect.FOOD);
+
+        if (!playerResourcesAndFood.hasResources(foodRequired)) {
+            return false;
+        }
+
+        this.playerResourcesAndFood.giveResources(foodRequired);
+        this.tribeFed = true;
+        return true;
     }
 
     /**
-     * Attempts to feed the tribe with //TODO.
+     * Attempts to feed the tribe with those resources.
      *
-     * @param resources resources
+     * @param resources
+     *            resources
+     *
      * @return true if tribe was successfully fed.
      */
     public boolean feedTribe(final Effect[] resources) {
-        // TODO
-        return false;
+        if (this.tribeFed) {
+            return true;
+        }
+
+        if (!this.playerResourcesAndFood.hasResources(resources)) {
+            return false;
+        }
+
+        int numberOfFood = 0;
+        int numberOfResources = 0;
+        for (Effect resource : resources) {
+            if (resource.isResource()) {
+                numberOfResources++;
+            } else if (resource == Effect.FOOD) {
+                numberOfFood++;
+            }
+        }
+
+        Effect[] food = new Effect[numberOfFood + 1];
+        Arrays.fill(food, Effect.FOOD);
+
+        if (this.playerResourcesAndFood.hasResources(food)) {
+            return false;
+        }
+
+        if (numberOfFood + numberOfResources != this.playerFigures.getTotalFigures()) {
+            return false;
+        }
+
+        this.playerResourcesAndFood.takeResources(resources);
+        this.tribeFed = true;
+
+        return true;
     }
 
     /**
-     * TODO.
+     * Feeds the tribe if player does not have enough food. Should lose 10 victory points after this.
      *
-     * @return true
+     * @return true if tribe was fed.
      */
     public boolean setTribeFed() {
-        // TODO
-        return false;
+        if (this.tribeFed) {
+            return false;
+        }
+
+        Effect[] foodRequired = new Effect[this.playerFigures.getTotalFigures()];
+        Arrays.fill(foodRequired, Effect.FOOD);
+
+        if (this.playerResourcesAndFood.hasResources(foodRequired)) {
+            return false;
+        }
+
+        Effect[] oneFood = new Effect[1];
+        oneFood[0] = Effect.FOOD;
+        while (this.playerResourcesAndFood.hasResources(oneFood)) {
+            this.playerResourcesAndFood.giveResources(oneFood);
+        }
+
+        this.tribeFed = true;
+
+        return true;
     }
 
     /**

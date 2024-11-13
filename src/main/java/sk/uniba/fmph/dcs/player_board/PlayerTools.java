@@ -6,12 +6,10 @@ public class PlayerTools {
     private final int maxMultipleUseTools = 3; // total number of tool slots
     private final int maxSingleUseTools = 3; // total number of civilisation cards
     private final int maxTools = maxMultipleUseTools + maxSingleUseTools;
-    private final int maxStrength = 4;
-
     private final int[] tools = new int[maxTools];
+    private final int maxStrength = 4;
     // multiple use tools + single use tools,
     // which can be max 36 - number of civilisation cards;
-
     private final boolean[] usedTools = new boolean[maxMultipleUseTools];
     // for one time tools does not need to remember if they were used
     // usedTools[i] is true, if tools[i] was used this turn
@@ -56,10 +54,13 @@ public class PlayerTools {
     /**
      * Adds single use tool of value strength.
      *
-     * @param strength - value of Single use tool.
+     * @param strength
+     *            - value of Single use tool.
      */
     public void addSingleUseTool(final int strength) {
-        if (strength <= 0 || this.maxStrength < strength) return;
+        if (strength <= 0 || this.maxStrength < strength) {
+            return;
+        }
 
         for (int i = maxMultipleUseTools; i < maxTools; i++) {
             if (tools[i] == 0) {
@@ -70,7 +71,9 @@ public class PlayerTools {
     }
 
     /**
-     * @param index - tools, which is going to be used.
+     * @param index
+     *            - tools, which is going to be used.
+     *
      * @return value of tools[index] or null, if tools[index] cant be used.
      */
     public Integer useTool(final int index) {
@@ -94,7 +97,9 @@ public class PlayerTools {
     }
 
     /**
-     * @param goal - number we need to achieve.
+     * @param goal
+     *            - number we need to achieve.
+     *
      * @return - returns true if sum of available tools is at least goal.
      */
     public boolean hasSufficientTools(final int goal) {

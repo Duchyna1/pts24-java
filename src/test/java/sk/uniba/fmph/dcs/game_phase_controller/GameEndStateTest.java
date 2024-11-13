@@ -30,7 +30,8 @@ public class GameEndStateTest {
 
         assertEquals(gameEndState.doNotFeedThisTurn(player), ActionResult.FAILURE);
         assertEquals(gameEndState.feedTribe(player, resources), ActionResult.FAILURE);
-        assertEquals(gameEndState.makeAction(player, Location.BUILDING_TILE1, resources, resources), ActionResult.FAILURE);
+        assertEquals(gameEndState.makeAction(player, Location.BUILDING_TILE1, resources, resources),
+                ActionResult.FAILURE);
         assertEquals(gameEndState.skipAction(player, Location.BUILDING_TILE1), ActionResult.FAILURE);
         assertEquals(gameEndState.makeAllPlayersTakeARewardChoice(player, Effect.WOOD), ActionResult.FAILURE);
         assertEquals(gameEndState.placeFigures(player, Location.BUILDING_TILE1, 1), ActionResult.FAILURE);

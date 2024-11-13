@@ -40,6 +40,8 @@ public class PlayerResourcesAndFoodTest {
         assert !playerResourcesAndFood.hasResources(new Effect[]{Effect.FOOD, Effect.FOOD});
         assert !playerResourcesAndFood.hasResources(new Effect[]{Effect.STONE});
         assert playerResourcesAndFood.hasResources(new Effect[]{Effect.GOLD});
+
+        assert !playerResourcesAndFood.giveResources(new Effect[]{Effect.CLAY});
     }
 
     @Test

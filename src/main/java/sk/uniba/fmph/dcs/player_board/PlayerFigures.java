@@ -66,6 +66,6 @@ public class PlayerFigures {
      * @return String with total figures and available figures.
      */
     public String status() {
-        return "Total figures: " + String.valueOf(this.totalFigures) + ", available: " + String.valueOf(this.figures);
+        return "Total figures: " + this.totalFigures + ", available: " + String.valueOf(this.figures);
     }
 }

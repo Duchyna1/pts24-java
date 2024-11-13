@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      issues: readwrite
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -33,5 +35,6 @@ jobs:
             gh issue edit $ISSUE_NUMBER --add-label "$NEW_STATUS"
             if [ ! -z "$ASSIGNEES" ]; then
               gh issue edit $ISSUE_NUMBER --add-assignee "$ASSIGNEES"
+              echo "$ASSIGNEES"
             fi
           done

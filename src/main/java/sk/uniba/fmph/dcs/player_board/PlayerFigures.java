@@ -26,13 +26,11 @@ public class PlayerFigures {
     }
 
     /**
-     * @param count
-     *            number of figures to be checked
-     *
+     * @param count number of figures to be checked
      * @return true if player has at least count available figures
      */
     public boolean hasFigures(final int count) {
-        return this.figures >= count;
+        return count >= 0 && this.figures >= count;
     }
 
     /**
@@ -45,9 +43,7 @@ public class PlayerFigures {
     /**
      * Take count figures from player if available.
      *
-     * @param count
-     *            number of figures to be taken
-     *
+     * @param count number of figures to be taken
      * @return true if count figures available, otherwise returns false
      */
     public boolean takeFigures(final int count) {
@@ -69,7 +65,7 @@ public class PlayerFigures {
     /**
      * @return String with total figures and available figures.
      */
-    public String status() {
+    public String state() {
         return "Total figures: " + this.totalFigures + ", available: " + String.valueOf(this.figures);
     }
 }

@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerResourcesAndFood {
-    private Map<Effect, Integer> resources;
+    private final Map<Effect, Integer> resources;
 
+    /**
+     * Initialise resources such that every resource is zero
+     */
     public PlayerResourcesAndFood() {
         resources = new HashMap<>();
         for (Effect res : Effect.values()) {
@@ -16,21 +19,33 @@ public class PlayerResourcesAndFood {
         }
     }
 
-    public boolean hasResources(Effect resources) {
+    /**
+     * @param resources - one of resources listed in Effect
+     * @return true if player has at least one of resource resources
+     */
+    public boolean hasResources(final Effect resources) {
         return this.resources.get(resources) > 0;
     }
 
 
-    // the player takes one resource of resources from game board
-    // always returns true, because player can always take resource
-    // something else should check, it there is enough resources of resources
-    public boolean takeResources(Effect resources) {
+    /**
+     * This function increases number of resources of type resource player has by one
+     *
+     * @param resources - one of resources listed in Effect
+     * @return true - always. Something else should check if player can take resource
+     */
+    public boolean takeResources(final Effect resources) {
         this.resources.put(resources, this.resources.get(resources) + 1);
         return true;
     }
 
-    //returns true, if player has at least 1 of resource type resources
-    public boolean giveResources(Effect resources) {
+    /**
+     * This function decreases number of resources of type resource player has by one
+     *
+     * @param resources - one of resources listed in Effect
+     * @return true if player has at least one resource of type resources
+     */
+    public boolean giveResources(final Effect resources) {
         if (this.hasResources(resources)) {
             this.resources.put(resources, this.resources.get(resources) - 1);
             return true;
@@ -38,6 +53,9 @@ public class PlayerResourcesAndFood {
         return false;
     }
 
+    /**
+     * @return number of points player has from resources
+     */
     public int numberOfResourcesForFinalPoints() {
         int ans = 0;
         for (Effect res : resources.keySet()) {
@@ -46,33 +64,16 @@ public class PlayerResourcesAndFood {
         return ans;
     }
 
+    /**
+     * @return state of PlayerResourcesAndFood. Only lists resources which are greater than zero
+     */
     public String state() {
         StringBuilder ans = new StringBuilder();
         for (Effect res : resources.keySet()) {
-            ans.append(res).append(": ").append(resources.get(res)).append("\n");
+            if (this.hasResources(res)) {
+                ans.append(res).append(": ").append(resources.get(res)).append("\n");
+            }
         }
         return ans.toString();
-    }
-
-    public static void main(String[] args) {
-        PlayerResourcesAndFood pr = new PlayerResourcesAndFood();
-        for (int i = 0; i < 10; i++) {
-            pr.takeResources(Effect.WOOD);
-        }
-        for (int i = 0; i < 10; i++) {
-            pr.takeResources(Effect.FOOD);
-        }
-        System.out.println(pr.state());
-
-        System.out.println(pr.numberOfResourcesForFinalPoints());
-
-        for (int i = 0; i < 20; i++) {
-            System.out.println(pr.giveResources(Effect.WOOD));
-        }
-        System.out.println(pr.state());
-
-        System.out.println(pr.numberOfResourcesForFinalPoints());
-
-
     }
 }

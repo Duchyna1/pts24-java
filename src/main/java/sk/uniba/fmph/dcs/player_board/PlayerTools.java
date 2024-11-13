@@ -6,26 +6,36 @@ public class PlayerTools {
     private final int maxMultipleUseTools = 3; // total number of tool slots
     private final int maxSingleUseTools = 36; // total number of civilisation cards
     private final int maxTools = maxMultipleUseTools + maxSingleUseTools;
+    private final int maxStrength = 4;
 
-    private int[] tools = new int[maxTools];
+    private final int[] tools = new int[maxTools];
     // multiple use tools + single use tools,
     // which can be max 36 - number of civilisation cards;
 
-    private boolean[] usedTools = new boolean[maxMultipleUseTools];
+    private final boolean[] usedTools = new boolean[maxMultipleUseTools];
     // for one time tools does not need to remember if they were used
     // usedTools[i] is true, if tools[i] was used this turn
 
+    /**
+     * Initialise
+     */
     public PlayerTools() {
         Arrays.fill(usedTools, false);
         Arrays.fill(tools, 0);
     }
 
+    /**
+     * Resets tools such that all are unused
+     */
     public void newTurn() {
         Arrays.fill(usedTools, false);
     }
 
+    /**
+     * Upgrades first tool, which can be upgraded
+     */
     public void addTool() {
-        int min = 4; // highest value multiple use tool can have is 4
+        int min = maxStrength; // highest value multiple use tool can have is 4
         int minIndex = -1;
         for (int i = 0; i < maxMultipleUseTools; i++) {
             if (tools[i] < min) {
@@ -43,6 +53,11 @@ public class PlayerTools {
         tools[minIndex]++;
     }
 
+    /**
+     * Adds single use tool of value strength
+     *
+     * @param strength - value of Single use tool
+     */
     public void addSingleUseTool(int strength) {
         for (int i = maxMultipleUseTools; i < maxTools; i++) {
             if (tools[i] == 0) {
@@ -52,6 +67,10 @@ public class PlayerTools {
         }
     }
 
+    /**
+     * @param index - tools, which is going to be used
+     * @return value of tools[index] or null, if tools[index] cant be used
+     */
     public Integer useTool(int index) {
         if (index < 0 || index > maxTools) {
             return null;
@@ -72,7 +91,10 @@ public class PlayerTools {
         return ans;
     }
 
-    // this function returns true, if player has enough value of available tools
+    /**
+     * @param goal - number we need to achieve
+     * @return - returns true if sum of available tools is at least goal
+     */
     public boolean hasSufficientTools(int goal) {
         int totalToolValue = 0;
         for (int i = 0; i < maxMultipleUseTools; i++) {
@@ -86,6 +108,9 @@ public class PlayerTools {
         return totalToolValue >= goal;
     }
 
+    /**
+     * @return state of PlayerTools. Only includes Single use tools, if they are available
+     */
     public String state() {
         StringBuilder ans = new StringBuilder();
         ans.append("multiple use tools:");

@@ -1,6 +1,5 @@
 package sk.uniba.fmph.dcs.game_board;
 
-
 import sk.uniba.fmph.dcs.stone_age.ActionResult;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 import sk.uniba.fmph.dcs.stone_age.HasAction;
@@ -13,7 +12,7 @@ public final class PlaceOnToolMakerAdaptor implements InterfaceFigureLocationInt
     }
 
     @Override
-    public boolean placeFigures(final Player player, final  int figureCount) {
+    public boolean placeFigures(final Player player, final int figureCount) {
         if (tryToPlaceFigures(player, figureCount) == HasAction.NO_ACTION_POSSIBLE) {
             return false;
         }

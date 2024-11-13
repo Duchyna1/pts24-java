@@ -7,32 +7,14 @@ import sk.uniba.fmph.dcs.stone_age.HasAction;
 import sk.uniba.fmph.dcs.stone_age.InterfaceFigureLocation;
 import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
 
-final class FigureLocationAdaptor implements InterfaceFigureLocation, InterfaceFigureLocationInternal {
-    @Override
-    public boolean placeFigures(final Player player, final int figureCount) {
-        return false;
+final class FigureLocationAdaptor implements InterfaceFigureLocation {
+    private final InterfaceFigureLocationInternal internal;
+
+    FigureLocationAdaptor(final InterfaceFigureLocationInternal internal) {
+        this.internal = internal;
     }
 
-    @Override
-    public HasAction tryToPlaceFigures(final Player player, final int count) {
-        return null;
-    }
-
-    @Override
-    public ActionResult makeAction(final Player player, final Effect[] inputResources, final Effect[] outputResources) {
-        return null;
-    }
-
-    @Override
-    public boolean skipAction(final Player player) {
-        return false;
-    }
-
-    @Override
-    public HasAction tryToMakeAction(final Player player) {
-        return null;
-    }
-
+    //todo
     @Override
     public boolean placeFigures(final PlayerOrder player, final int figureCount) {
         return false;

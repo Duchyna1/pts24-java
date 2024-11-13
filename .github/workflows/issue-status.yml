@@ -2,7 +2,7 @@ name: Update Issue Status and Assign People
 
 on:
   pull_request:
-    types: [opened, ready_for_review, closed]
+    types: [opened, edited, reopened, closed, synchronize]
 
 jobs:
   update-issue-status:

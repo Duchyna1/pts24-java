@@ -12,42 +12,42 @@ import java.util.Collection;
 public class GameEndState implements InterfaceGamePhaseState {
     @Override
     public ActionResult placeFigures(PlayerOrder player, Location location, int figuresCount) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult makeAction(PlayerOrder player, Location location, Collection<Effect> inputResources, Collection<Effect> outputResources) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult skipAction(PlayerOrder player, Location location) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult useTools(PlayerOrder player, int toolIndex) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult noMoreToolsThisThrow(PlayerOrder player) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult feedTribe(PlayerOrder player, Collection<Effect> resources) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult doNotFeedThisTurn(PlayerOrder player) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override
     public ActionResult makeAllPlayersTakeARewardChoice(PlayerOrder player, Effect reward) {
-        return null;
+        return ActionResult.FAILURE;
     }
 
     @Override

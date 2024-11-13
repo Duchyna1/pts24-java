@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class PlayerTools {
     private final int maxMultipleUseTools = 3; // total number of tool slots
-    private final int maxSingleUseTools = 36; // total number of civilisation cards
+    private final int maxSingleUseTools = 3; // total number of civilisation cards
     private final int maxTools = maxMultipleUseTools + maxSingleUseTools;
     private final int maxStrength = 4;
 

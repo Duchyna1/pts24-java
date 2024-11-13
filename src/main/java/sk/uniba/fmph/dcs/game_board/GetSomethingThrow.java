@@ -2,27 +2,29 @@ package sk.uniba.fmph.dcs.game_board;
 
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
-import java.util.stream.IntStream;
+import java.util.Arrays;
 
 public final class GetSomethingThrow implements EvaluateCivilisationCardImmediateEffect {
     private final Effect resource;
-    private int numberOfResources;
+    private final CurrentThrow currentThrow;
 
     public GetSomethingThrow(final Effect resource) {
         this.resource = resource;
-        numberOfResources = IntStream.of(new Throw().hod(2)).sum();
+
+        int something = 0; //todo
+        currentThrow = new CurrentThrow(resource, something);
     }
 
     @Override
     public boolean performEffect(final Player player, final Effect choice) {
-        if (numberOfResources == 0) {
+        if (choice != this.resource) {
             return false;
         }
-        if (choice != resource) {
-            return false;
-        }
-        numberOfResources--;
-        player.playerBoard().giveEffect(new Effect[]{choice});
+        currentThrow.initiate(player, choice, 2);
+        int pocet = 0; //todo
+        Effect[] res = new Effect[pocet];
+        Arrays.fill(res, choice);
+        player.playerBoard().giveEffect(res);
         return true;
     }
 }

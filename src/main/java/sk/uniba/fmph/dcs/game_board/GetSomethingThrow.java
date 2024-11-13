@@ -4,7 +4,7 @@ import sk.uniba.fmph.dcs.stone_age.Effect;
 
 import java.util.stream.IntStream;
 
-public class GetSomethingThrow implements EvaluateCivilisationCardImmediateEffect {
+public final class GetSomethingThrow implements EvaluateCivilisationCardImmediateEffect {
     private final Effect resource;
     private int numberOfResources;
 
@@ -14,9 +14,13 @@ public class GetSomethingThrow implements EvaluateCivilisationCardImmediateEffec
     }
 
     @Override
-    public boolean performEffect(Player player, Effect choice) {
-        if (numberOfResources == 0) return false;
-        if (choice != resource) return false;
+    public boolean performEffect(final Player player, final Effect choice) {
+        if (numberOfResources == 0) {
+            return false;
+        }
+        if (choice != resource) {
+            return false;
+        }
         numberOfResources--;
         player.playerBoard().giveEffect(new Effect[]{choice});
         return true;

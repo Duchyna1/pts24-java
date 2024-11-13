@@ -1,0 +1,35 @@
+name: Update Issue Status and Assign People
+
+on:
+  pull_request:
+    types: [ opened, ready_for_review, closed ]
+
+jobs:
+  update-issue-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set Issue Status and Assign People
+        run: |
+          ISSUE_NUMBERS=$(echo "${{ github.event.pull_request.body }}" | grep -oE "#[0-9]+" | tr -d "#")
+          PR_STATE="${{ github.event.pull_request.state }}"
+          PR_DRAFT="${{ github.event.pull_request.draft }}"
+          PR_MERGED="${{ github.event.pull_request.merged }}"
+          ASSIGNEES=$(echo "${{ github.event.pull_request.assignees }}" | jq -r '.[].login' | tr '\n' ',' | sed 's/,$//')
+
+          if [ "$PR_DRAFT" == "true" ]; then
+            NEW_STATUS="In Progress"
+          elif [ "$PR_MERGED" == "true" ]; then
+            NEW_STATUS="Done"
+          else
+            NEW_STATUS="Waiting to merge"
+          fi
+
+          for ISSUE_NUMBER in $ISSUE_NUMBERS; do
+            gh issue edit $ISSUE_NUMBER --add-label "$NEW_STATUS"
+            if [ ! -z "$ASSIGNEES" ]; then
+              gh issue edit $ISSUE_NUMBER --add-assignee "$ASSIGNEES"
+            fi
+          done

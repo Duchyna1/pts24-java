@@ -59,6 +59,8 @@ public class PlayerTools {
      * @param strength - value of Single use tool.
      */
     public void addSingleUseTool(final int strength) {
+        if (strength <= 0 || this.maxStrength < strength) return;
+
         for (int i = maxMultipleUseTools; i < maxTools; i++) {
             if (tools[i] == 0) {
                 tools[i] = strength;

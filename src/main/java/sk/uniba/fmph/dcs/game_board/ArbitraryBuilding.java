@@ -26,6 +26,6 @@ public final class ArbitraryBuilding implements Building {
 
     @Override
     public String state() {
-        return null;
+        return "Number of arbitrary resources required: " + numberOfResources + "\n";
     }
 }

@@ -20,7 +20,7 @@ public final class VariableBuilding implements Building {
     @Override
     public OptionalInt build(final Collection<Effect> resources) {
         Set<Effect> types = new TreeSet<>(resources);
-        if (resources.size() != numberOfResources || types.size() > numberOfResourcesTypes) {
+        if (resources.size() != numberOfResources || types.size() != numberOfResourcesTypes) {
             return OptionalInt.empty();
         }
         int sum = 0;
@@ -32,6 +32,6 @@ public final class VariableBuilding implements Building {
 
     @Override
     public String state() {
-        return null;
+        return "Number of resources required: " + numberOfResources + ", exact number of types required: " + numberOfResourcesTypes + "\n";
     }
 }

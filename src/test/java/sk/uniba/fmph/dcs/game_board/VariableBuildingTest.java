@@ -11,8 +11,9 @@ import static org.junit.Assert.assertEquals;
 public class VariableBuildingTest {
     @Test
     public void test_calculation() {
-        VariableBuilding building = new VariableBuilding(4, 2);
+        //todo toto by mal spravit niekto iny ako ja zrejme
 
+        VariableBuilding building = new VariableBuilding(4, 2);
 
         ArrayList<Effect> wrongResources = new ArrayList<Effect>();
         wrongResources.add(Effect.WOOD);
@@ -26,13 +27,15 @@ public class VariableBuildingTest {
         goodResources.add(Effect.STONE);
         assertEquals(building.build(goodResources), OptionalInt.of(6 + 6 + 5 + 5));
 
-        goodResources.clear();
-        goodResources.add(Effect.STONE);
-        goodResources.add(Effect.STONE);
-        goodResources.add(Effect.STONE);
-        goodResources.add(Effect.STONE);
-        assertEquals(building.build(goodResources), OptionalInt.of(5 + 5 + 5 + 5));
+        wrongResources.clear();
+        wrongResources.add(Effect.STONE);
+        wrongResources.add(Effect.STONE);
+        wrongResources.add(Effect.STONE);
+        wrongResources.add(Effect.STONE);
+        assertEquals(building.build(wrongResources), OptionalInt.empty());
 
+        wrongResources.clear();
+        wrongResources.add(Effect.WOOD);
         wrongResources.add(Effect.WOOD);
         wrongResources.add(Effect.WOOD);
         wrongResources.add(Effect.WOOD);

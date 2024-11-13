@@ -7,5 +7,5 @@ import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
  * @param playerOrder Player's order in the game
  * @param playerBoard Interface for the player's board in the game
  */
-// TODO
-// public record Player(PlayerOrder playerOrder, InterfacePlayerBoardGameBoard playerBoard) { }
+public record Player(PlayerOrder playerOrder, InterfacePlayerBoardGameBoard playerBoard) {
+}

@@ -3,6 +3,7 @@ package sk.uniba.fmph.dcs.game_board;
 
 public final class Throw {
     private static final int DICESIDES = 6;
+
     private int randomDice() {
         return (int) (Math.random() * DICESIDES);
     }

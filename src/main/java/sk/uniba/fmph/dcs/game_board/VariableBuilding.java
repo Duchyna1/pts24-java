@@ -1,11 +1,9 @@
 package sk.uniba.fmph.dcs.game_board;
 
+import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
-import java.util.TreeSet;
-import java.util.Set;
-import java.util.Collection;
-import java.util.OptionalInt;
+import java.util.*;
 
 
 public final class VariableBuilding implements Building {
@@ -32,6 +30,8 @@ public final class VariableBuilding implements Building {
 
     @Override
     public String state() {
-        return "Number of resources required: " + numberOfResources + ", exact number of types required: " + numberOfResourcesTypes + "\n";
+        Map<String, String> state = Map.of("numberOfResources", Integer.toString(numberOfResources),
+                "numberOfResourcesTypes", Integer.toString(numberOfResourcesTypes));
+        return new JSONObject(state).toString();
     }
 }

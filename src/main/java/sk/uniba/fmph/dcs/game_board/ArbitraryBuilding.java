@@ -1,8 +1,10 @@
 package sk.uniba.fmph.dcs.game_board;
 
+import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.OptionalInt;
 
 public final class ArbitraryBuilding implements Building {
@@ -14,7 +16,7 @@ public final class ArbitraryBuilding implements Building {
 
     @Override
     public OptionalInt build(final Collection<Effect> resources) {
-        if (resources.size() != numberOfResources) {
+        if (resources.size() > numberOfResources) {
             return OptionalInt.empty();
         }
         int sum = 0;
@@ -26,6 +28,7 @@ public final class ArbitraryBuilding implements Building {
 
     @Override
     public String state() {
-        return "Number of arbitrary resources required: " + numberOfResources + "\n";
+        Map<String, String> state = Map.of("numberOfResources", Integer.toString(numberOfResources));
+        return new JSONObject(state).toString();
     }
 }

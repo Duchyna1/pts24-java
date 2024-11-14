@@ -1,14 +1,14 @@
 package sk.uniba.fmph.dcs.game_board;
 
+import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ToolMakerHutsFields {
-    private static final int NORMAL_FIGURES = -1;
-    private static final int HUT_FIGURES = -3;
     private static final int MAX_FILLED_RESTRICTION = 2;
     private final List<PlayerOrder> toolMakerFigures;
     private final List<PlayerOrder> hutFigures;
@@ -62,7 +62,6 @@ public class ToolMakerHutsFields {
             return false;
         }
         player.playerBoard().giveEffect(new Effect[]{Effect.TOOL});
-        //todo give figures back? player.playerBoard().takeFigures(NORMAL_FIGURES);
         return true;
     }
 
@@ -102,7 +101,7 @@ public class ToolMakerHutsFields {
         if (!hutFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
-        // todo give him 3 figures back? player.playerBoard().takeFigures(HUT_FIGURES);
+        //todo player.playerBoard().giveFigure();
         return false;
     }
 
@@ -142,7 +141,6 @@ public class ToolMakerHutsFields {
             return false;
         }
         player.playerBoard().giveEffect(new Effect[]{Effect.FIELD});
-        //todo give figure back? player.playerBoard().takeFigures(NORMAL_FIGURES);
         return false;
     }
 
@@ -170,9 +168,9 @@ public class ToolMakerHutsFields {
      * @return state of figure placment
      */
     public String state() {
-        return "ToolMakerHutsFields:\n"
-                + "ToolMaker: " + toolMakerFigures.toString() + "\n"
-                + "Huts: " + hutFigures.toString() + "\n"
-                + "Fields: " + fieldsFigures.toString() + "\n";
+        Map<String, String> state = Map.of("toolMakerFigures", toolMakerFigures.toString(),
+                "hutFigures", hutFigures.toString(),
+                "fieldsFigures", fieldsFigures.toString());
+        return new JSONObject(state).toString();
     }
 }

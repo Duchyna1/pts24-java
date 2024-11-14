@@ -5,7 +5,7 @@ import sk.uniba.fmph.dcs.stone_age.Effect;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEffect {
+public class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEffect {
 
     private final RewardMenu menu;
     private static final int WOODID = 1;
@@ -14,10 +14,13 @@ public final class AllPlayersTakeReward implements EvaluateCivilisationCardImmed
     private static final int GOLDID = 4;
     private static final int TOOLID = 5;
 
+    /**
+     * @param menu RewardMenu that is already existing
+     */
     public AllPlayersTakeReward(final RewardMenu menu) {
         this.menu = menu;
         int n = menu.getPlayersCount();
-        int[] t = new Throw().hod(n);
+        int[] t = Throw.hod(n);
         List<Effect> m = new ArrayList<>();
         for (var i : t) {
             if (i == WOODID) {
@@ -37,6 +40,13 @@ public final class AllPlayersTakeReward implements EvaluateCivilisationCardImmed
         menu.initiate(m);
     }
 
+    /**
+     * take one resource from menu for player.
+     *
+     * @param player player that takes from menu
+     * @param choice resource to take from menu
+     * @return true if resource was successfully taken
+     */
     @Override
     public boolean performEffect(final Player player, final Effect choice) {
         return menu.takeReward(player.playerOrder(), choice);

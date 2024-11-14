@@ -6,7 +6,7 @@ import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ToolMakerHutsFields {
+public class ToolMakerHutsFields {
     private static final int NORMAL_FIGURES = -1;
     private static final int HUT_FIGURES = -3;
     private static final int MAX_FILLED_RESTRICTION = 2;
@@ -15,6 +15,7 @@ public final class ToolMakerHutsFields {
     private final List<PlayerOrder> fieldsFigures;
     private final int restriction;
     private static final int FOUR_PLAYERS = 4;
+
     private boolean violatesRestriction() {
         int result = (toolMakerFigures.isEmpty() ? 1 : 0)
                 + (hutFigures.isEmpty() ? 1 : 0)
@@ -26,6 +27,9 @@ public final class ToolMakerHutsFields {
         }
     }
 
+    /**
+     * @param playerCount needed for restrictions
+     */
     public ToolMakerHutsFields(final int playerCount) {
         toolMakerFigures = new ArrayList<>();
         hutFigures = new ArrayList<>();
@@ -33,6 +37,12 @@ public final class ToolMakerHutsFields {
         this.restriction = playerCount;
     }
 
+    /**
+     * resolve action place on toolmaker.
+     *
+     * @param player player to place
+     * @return true if action can be completed
+     */
     public boolean placeOnToolMaker(final Player player) {
         if (!canPlaceOnToolMaker(player)) {
             return false;
@@ -41,15 +51,25 @@ public final class ToolMakerHutsFields {
         return true;
     }
 
+    /**
+     * resolve action toolmaker.
+     *
+     * @param player player to give resource to
+     * @return true if action can be completed
+     */
     public boolean actionToolMaker(final Player player) {
         if (!toolMakerFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
         player.playerBoard().giveEffect(new Effect[]{Effect.TOOL});
-        player.playerBoard().takeFigures(NORMAL_FIGURES);
+        //todo give figures back? player.playerBoard().takeFigures(NORMAL_FIGURES);
         return true;
     }
 
+    /**
+     * @param player irrelevant
+     * @return true if figure can be placed on toolmaker
+     */
     public boolean canPlaceOnToolMaker(final Player player) {
         if (violatesRestriction()) {
             return false;
@@ -57,6 +77,12 @@ public final class ToolMakerHutsFields {
         return toolMakerFigures.isEmpty();
     }
 
+    /**
+     * resolve action place on hut.
+     *
+     * @param player player to place
+     * @return true if action can be completed
+     */
     public boolean placeOnHut(final Player player) {
         if (!canPlaceOnHut(player)) {
             return false;
@@ -66,14 +92,24 @@ public final class ToolMakerHutsFields {
         return true;
     }
 
+    /**
+     * resolve action hut.
+     *
+     * @param player player to place
+     * @return true if action can be completed
+     */
     public boolean actionHut(final Player player) {
         if (!hutFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
-        player.playerBoard().takeFigures(HUT_FIGURES);
+        // todo give him 3 figures back? player.playerBoard().takeFigures(HUT_FIGURES);
         return false;
     }
 
+    /**
+     * @param player irrelevant
+     * @return true figure can be placed on hut
+     */
     public boolean canPlaceOnHut(final Player player) {
         if (violatesRestriction()) {
             return false;
@@ -81,6 +117,12 @@ public final class ToolMakerHutsFields {
         return hutFigures.isEmpty();
     }
 
+    /**
+     * resolve action place on fields.
+     *
+     * @param player player to place
+     * @return true if action can be completed
+     */
     public boolean placeOnFields(final Player player) {
         if (!canPlaceOnFields(player)) {
             return false;
@@ -89,15 +131,25 @@ public final class ToolMakerHutsFields {
         return true;
     }
 
+    /**
+     * resolve action fields.
+     *
+     * @param player player to give resource to
+     * @return true if action can be completed
+     */
     public boolean actionFields(final Player player) {
         if (!fieldsFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
         player.playerBoard().giveEffect(new Effect[]{Effect.FIELD});
-        player.playerBoard().takeFigures(NORMAL_FIGURES);
+        //todo give figure back? player.playerBoard().takeFigures(NORMAL_FIGURES);
         return false;
     }
 
+    /**
+     * @param player irrelevant
+     * @return true if figure can be placed on fields
+     */
     public boolean canPlaceOnFields(final Player player) {
         if (violatesRestriction()) {
             return false;
@@ -105,12 +157,18 @@ public final class ToolMakerHutsFields {
         return fieldsFigures.isEmpty();
     }
 
+    /**
+     * reset class so that it can work on new turn.
+     */
     public void newTurn() {
         toolMakerFigures.clear();
         hutFigures.clear();
         fieldsFigures.clear();
     }
 
+    /**
+     * @return state of figure placment
+     */
     public String state() {
         return "ToolMakerHutsFields:\n"
                 + "ToolMaker: " + toolMakerFigures.toString() + "\n"

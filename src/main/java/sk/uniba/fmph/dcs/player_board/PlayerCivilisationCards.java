@@ -1,6 +1,5 @@
 package sk.uniba.fmph.dcs.player_board;
 
-import sk.uniba.fmph.dcs.stone_age.Effect;
 import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
 
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class PlayerCivilisationCards {
             EndOfGameEffect.TRANSPORT, EndOfGameEffect.MUSIC, EndOfGameEffect.WEAVING};
 
     /**
-     * Initialization
+     * Initialization.
      */
     public PlayerCivilisationCards() {
         endOfGameEffects = new HashMap<>();

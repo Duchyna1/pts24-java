@@ -23,7 +23,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     /**
      * TODO.
      *
-     * @param resources 
+     * @param resources
      * @return TODO
      */
     @Override
@@ -62,7 +62,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param stuff 
+     * @param stuff
      */
     @Override
     public void giveEffect(Effect[] stuff) {
@@ -71,7 +71,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param stuff 
+     * @param stuff
      */
     @Override
     public void giveEndOfGameEffect(EndOfGameEffect[] stuff) {
@@ -80,7 +80,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param stuff 
+     * @param stuff
      * @return TODO
      */
     @Override
@@ -99,7 +99,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param count 
+     * @param count
      * @return TODO
      */
     @Override
@@ -110,7 +110,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param count 
+     * @param count
      * @return TODO
      */
     @Override
@@ -121,7 +121,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param goal 
+     * @param goal
      * @return TODO
      */
     @Override
@@ -132,7 +132,7 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
 
     /**
      * TODO
-     * @param idx 
+     * @param idx
      * @return TODO
      */
     @Override

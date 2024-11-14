@@ -9,8 +9,8 @@ public class PlayerCivilisationCards {
 
     private Map<EndOfGameEffect, Integer> endOfGameEffects;
     private final EndOfGameEffect[] greenBackGround = {EndOfGameEffect.MEDICINE, EndOfGameEffect.ART,
-            EndOfGameEffect.WRITING, EndOfGameEffect.POTTERY, EndOfGameEffect.SUNDIAL,
-            EndOfGameEffect.TRANSPORT, EndOfGameEffect.MUSIC, EndOfGameEffect.WEAVING};
+            EndOfGameEffect.WRITING, EndOfGameEffect.POTTERY, EndOfGameEffect.SUNDIAL, EndOfGameEffect.TRANSPORT,
+            EndOfGameEffect.MUSIC, EndOfGameEffect.WEAVING};
 
     /**
      * Initialization.
@@ -23,7 +23,8 @@ public class PlayerCivilisationCards {
     }
 
     /**
-     * @param effects - list of effects to be added
+     * @param effects
+     *            - list of effects to be added
      */
     public void addEndOfGameEffects(final EndOfGameEffect[] effects) {
         for (EndOfGameEffect effect : effects) {
@@ -32,21 +33,32 @@ public class PlayerCivilisationCards {
     }
 
     /**
-     * @param buildings - number of buildings
-     * @param tools     - sum of values of multiple use tools (check rules)
-     * @param fields    - number on agriculture track
-     * @param figures   - number of player figures
-     * @return - score from green cards, tools, buildings, tools, agriculture track, figures
-     * as said it should be calculated in rules
+     * @param buildings
+     *            - number of buildings
+     * @param tools
+     *            - sum of values of multiple use tools (check rules)
+     * @param fields
+     *            - number on agriculture track
+     * @param figures
+     *            - number of player figures
+     *
+     * @return - score from green cards, tools, buildings, tools, agriculture track, figures as said it should be
+     *         calculated in rules
      */
-    public int calculateEndOfGameCivilisationCardsPoints(final int buildings, final int tools, final int fields, final int figures) {
+    public int calculateEndOfGameCivilisationCardsPoints(final int buildings, final int tools, final int fields,
+            final int figures) {
+        Map<EndOfGameEffect, Integer> endOfGameEffectsCopy = new HashMap<>();
+        for (EndOfGameEffect effect : EndOfGameEffect.values()) {
+            endOfGameEffectsCopy.put(effect, endOfGameEffects.get(effect));
+        }
+
         int ans = 0;
         while (true) {
             int points = 0;
             for (EndOfGameEffect effect : greenBackGround) {
-                if (endOfGameEffects.get(effect) > 0) {
+                if (endOfGameEffectsCopy.get(effect) > 0) {
                     points += 1;
-                    endOfGameEffects.put(effect, endOfGameEffects.get(effect) - 1);
+                    endOfGameEffectsCopy.put(effect, endOfGameEffectsCopy.get(effect) - 1);
                 }
             }
             ans += points * points;
@@ -55,10 +67,10 @@ public class PlayerCivilisationCards {
             }
         }
 
-        ans += Math.max(buildings, 0) * endOfGameEffects.get(EndOfGameEffect.BUILDER);
-        ans += Math.max(tools, 0) * endOfGameEffects.get(EndOfGameEffect.TOOL_MAKER);
-        ans += Math.max(fields, 0) * endOfGameEffects.get(EndOfGameEffect.FARMER);
-        ans += Math.max(figures, 0) * endOfGameEffects.get(EndOfGameEffect.SHAMAN);
+        ans += Math.max(buildings, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.BUILDER);
+        ans += Math.max(tools, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.TOOL_MAKER);
+        ans += Math.max(fields, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.FARMER);
+        ans += Math.max(figures, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.SHAMAN);
 
         return ans;
     }

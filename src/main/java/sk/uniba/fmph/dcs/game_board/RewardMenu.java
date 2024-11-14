@@ -30,6 +30,7 @@ public class RewardMenu implements InterfaceTakeReward {
 
     /**
      * I mean who does not know what this does maven?.
+     *
      * @return registered players count
      */
     public int getPlayersCount() {
@@ -55,6 +56,16 @@ public class RewardMenu implements InterfaceTakeReward {
                 + "Players remaining: " + players.toString() + "\n";
     }
 
+    private Player getPlayerFromPlayerOrder(final PlayerOrder player) {
+        Player p = null;
+        for (var i : players) {
+            if (i.playerOrder().equals(player)) {
+                p = i;
+            }
+        }
+        return p;
+    }
+
     /**
      * removes reward from menu and gives it to player.
      *
@@ -67,12 +78,7 @@ public class RewardMenu implements InterfaceTakeReward {
         if (!menu.contains(reward)) {
             return false;
         }
-        Player p = null;
-        for (var i : players) {
-            if (i.playerOrder().equals(player)) {
-                p = i;
-            }
-        }
+        Player p = getPlayerFromPlayerOrder(player);
         if (p == null) {
             return false;
         }
@@ -99,6 +105,12 @@ public class RewardMenu implements InterfaceTakeReward {
         }
         if (!playersLeft.contains(player)) {
             return HasAction.NO_ACTION_POSSIBLE;
+        }
+        if (menu.size() == 1) {
+            Player p = getPlayerFromPlayerOrder(player);
+            p.playerBoard().giveEffect(menu.toArray(new Effect[0]));
+            playersLeft.remove(player);
+            return HasAction.AUTOMATIC_ACTION_DONE;
         }
         return HasAction.WAITING_FOR_PLAYER_ACTION;
     }

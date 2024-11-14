@@ -7,6 +7,7 @@ import java.util.List;
 
 public class GetSomethingFixed implements EvaluateCivilisationCardImmediateEffect {
     private final List<Effect> effects;
+
     /**
      * @param effect list of effects that can be chosen.
      */
@@ -16,19 +17,16 @@ public class GetSomethingFixed implements EvaluateCivilisationCardImmediateEffec
     }
 
     /**
-     * take one resource and give to player.
+     * give all resources to player.
      *
      * @param player player to give choice to
-     * @param choice resource chosen
-     * @return false if resource is not available to choose
+     * @param choice ignores
+     * @return true - it is always possible to give resources to player
      */
     @Override
     public boolean performEffect(final Player player, final Effect choice) {
-        if (!effects.contains(choice)) {
-            return false;
-        }
-        effects.remove(choice);
-        player.playerBoard().giveEffect(new Effect[]{choice});
+        player.playerBoard().giveEffect(effects.toArray(new Effect[0]));
+        effects.clear();
         return true;
     }
 }

@@ -1,6 +1,7 @@
 package sk.uniba.fmph.dcs.game_board;
 
 import sk.uniba.fmph.dcs.stone_age.Effect;
+import sk.uniba.fmph.dcs.stone_age.InterfaceGamePhaseController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,15 @@ public class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEf
     private static final int STONEID = 3;
     private static final int GOLDID = 4;
     private static final int TOOLID = 5;
+    private final InterfaceGamePhaseController controller;
 
     /**
      * @param menu RewardMenu that is already existing
+     * @param controller controller to call in performEffect
      */
-    public AllPlayersTakeReward(final RewardMenu menu) {
+    public AllPlayersTakeReward(final RewardMenu menu, final InterfaceGamePhaseController controller) {
         this.menu = menu;
+        this.controller = controller;
         int n = menu.getPlayersCount();
         int[] t = Throw.hod(n);
         List<Effect> m = new ArrayList<>();
@@ -41,7 +45,7 @@ public class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEf
     }
 
     /**
-     * take one resource from menu for player.
+     * call controller.
      *
      * @param player player that takes from menu
      * @param choice resource to take from menu
@@ -49,6 +53,6 @@ public class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEf
      */
     @Override
     public boolean performEffect(final Player player, final Effect choice) {
-        return menu.takeReward(player.playerOrder(), choice);
+        return controller.makeAllPlayersTakeARewardChoice(player.playerOrder(), choice);
     }
 }

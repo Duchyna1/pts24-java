@@ -15,8 +15,8 @@ public class PlayerFiguresTest {
         PlayerFigures pf = new PlayerFigures();
         for (int i = 0; i < 5; i++) {
             pf.addNewFigure();
+            pf.newTurn();
         }
-        pf.newTurn();
         assert (pf.getTotalFigures() == 10);
         assert (pf.hasFigures(10));
         assert !(pf.hasFigures(11));
@@ -36,8 +36,8 @@ public class PlayerFiguresTest {
         PlayerFigures pf = new PlayerFigures();
         for (int i = 0; i < 5; i++) {
             pf.addNewFigure();
+            pf.newTurn();
         }
-        pf.newTurn();
         assert (pf.hasFigures(10));
         assert (pf.takeFigures(5));
         assert !(pf.takeFigures(6));
@@ -59,10 +59,14 @@ public class PlayerFiguresTest {
 
         for (int i = 0; i < 5; i++) {
             pf.addNewFigure();
+            pf.newTurn();
         }
+
+        pf.takeFigures(5);
 
         state = pf.state();
         desiredOutcome = "Total figures: 10, available: 5";
+        System.out.println(state);
         assert (state.equals(desiredOutcome));
         pf.newTurn();
         state = pf.state();

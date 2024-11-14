@@ -18,7 +18,8 @@ public class PlayerFigures {
     }
 
     /**
-     * Adds figure to players total figures. Has no effect when he has more than 10 figures.
+     * Adds figure to players total figures. Has no effect when he has more than 10 figures. Can add only one figure per
+     * round.
      */
     public void addNewFigure() {
         if (this.totalFigures >= this.maxFigurines) {
@@ -34,7 +35,9 @@ public class PlayerFigures {
     }
 
     /**
-     * @param count number of figures to be checked
+     * @param count
+     *            number of figures to be checked
+     *
      * @return true if player has at least count available figures
      */
     public boolean hasFigures(final int count) {
@@ -51,7 +54,9 @@ public class PlayerFigures {
     /**
      * Take count figures from player if available.
      *
-     * @param count number of figures to be taken
+     * @param count
+     *            number of figures to be taken
+     *
      * @return true if count figures available, otherwise returns false
      */
     public boolean takeFigures(final int count) {

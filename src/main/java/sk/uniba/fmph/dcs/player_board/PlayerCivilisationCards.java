@@ -55,10 +55,10 @@ public class PlayerCivilisationCards {
             }
         }
 
-        ans += buildings * endOfGameEffects.get(EndOfGameEffect.BUILDER);
-        ans += tools * endOfGameEffects.get(EndOfGameEffect.TOOL_MAKER);
-        ans += fields * endOfGameEffects.get(EndOfGameEffect.FARMER);
-        ans += figures * endOfGameEffects.get(EndOfGameEffect.SHAMAN);
+        ans += Math.max(buildings, 0) * endOfGameEffects.get(EndOfGameEffect.BUILDER);
+        ans += Math.max(tools, 0) * endOfGameEffects.get(EndOfGameEffect.TOOL_MAKER);
+        ans += Math.max(fields, 0) * endOfGameEffects.get(EndOfGameEffect.FARMER);
+        ans += Math.max(figures, 0) * endOfGameEffects.get(EndOfGameEffect.SHAMAN);
 
         return ans;
     }

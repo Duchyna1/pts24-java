@@ -64,7 +64,7 @@ public final class AllPlayersTakeARewardState implements InterfaceGamePhaseState
     }
 
     @Override
-    public HasAction tryToMakeAutomaticAction(PlayerOrder player) {
+    public HasAction tryToMakeAutomaticAction(final PlayerOrder player) {
         return interfaceTakeReward.tryMakeAction(player);
     }
 }

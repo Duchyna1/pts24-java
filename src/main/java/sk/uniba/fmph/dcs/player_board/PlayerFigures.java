@@ -3,6 +3,7 @@ package sk.uniba.fmph.dcs.player_board;
 public class PlayerFigures {
     private int totalFigures;
     private int figures;
+    private boolean canAddFigure;
 
     private final int startingFigures = 5;
     private final int maxFigurines = 10;
@@ -13,6 +14,7 @@ public class PlayerFigures {
     public PlayerFigures() {
         this.totalFigures = this.startingFigures;
         this.figures = this.startingFigures;
+        this.canAddFigure = true;
     }
 
     /**
@@ -22,7 +24,13 @@ public class PlayerFigures {
         if (this.totalFigures >= this.maxFigurines) {
             return;
         }
+
+        if (!this.canAddFigure) {
+            return;
+        }
+
         this.totalFigures++;
+        this.canAddFigure = false;
     }
 
     /**
@@ -60,6 +68,7 @@ public class PlayerFigures {
      */
     public void newTurn() {
         this.figures = this.totalFigures;
+        this.canAddFigure = true;
     }
 
     /**

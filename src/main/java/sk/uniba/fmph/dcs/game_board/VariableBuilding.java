@@ -3,7 +3,11 @@ package sk.uniba.fmph.dcs.game_board;
 import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.OptionalInt;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Map;
 
 
 public final class VariableBuilding implements Building {

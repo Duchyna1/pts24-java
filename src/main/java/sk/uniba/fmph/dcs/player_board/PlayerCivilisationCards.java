@@ -9,10 +9,13 @@ import java.util.Map;
 public class PlayerCivilisationCards {
 
     private Map<EndOfGameEffect, Integer> endOfGameEffects;
-    private EndOfGameEffect[] greenBackGround = {EndOfGameEffect.MEDICINE, EndOfGameEffect.ART,
+    private final EndOfGameEffect[] greenBackGround = {EndOfGameEffect.MEDICINE, EndOfGameEffect.ART,
             EndOfGameEffect.WRITING, EndOfGameEffect.POTTERY, EndOfGameEffect.SUNDIAL,
             EndOfGameEffect.TRANSPORT, EndOfGameEffect.MUSIC, EndOfGameEffect.WEAVING};
 
+    /**
+     * Initialization
+     */
     public PlayerCivilisationCards() {
         endOfGameEffects = new HashMap<>();
         for (EndOfGameEffect effect : EndOfGameEffect.values()) {
@@ -20,13 +23,24 @@ public class PlayerCivilisationCards {
         }
     }
 
-    public void addEndOfGameEffects(EndOfGameEffect[] effects) {
+    /**
+     * @param effects - list of effects to be added
+     */
+    public void addEndOfGameEffects(final EndOfGameEffect[] effects) {
         for (EndOfGameEffect effect : effects) {
             endOfGameEffects.put(effect, endOfGameEffects.get(effect) + 1);
         }
     }
 
-    public int calculateEndOfGameCivilisationCardsPoints(int buildings, int tools, int fields, int figures) {
+    /**
+     * @param buildings - number of buildings
+     * @param tools     - sum of values of multiple use tools (check rules)
+     * @param fields    - number on agriculture track
+     * @param figures   - number of player figures
+     * @return - score from green cards, tools, buildings, tools, agriculture track, figures
+     * as said it should be calculated in rules
+     */
+    public int calculateEndOfGameCivilisationCardsPoints(final int buildings, final int tools, final int fields, final int figures) {
         int ans = 0;
         while (true) {
             int points = 0;
@@ -50,6 +64,9 @@ public class PlayerCivilisationCards {
         return ans;
     }
 
+    /**
+     * @return inner state of this class
+     */
     public String state() {
         StringBuilder ans = new StringBuilder();
         for (EndOfGameEffect egf : endOfGameEffects.keySet()) {

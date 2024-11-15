@@ -9,6 +9,8 @@ public interface InterfacePlayerBoardGameBoard {
 
     boolean takeResources(Effect[] stuff);
 
+    void giveFigure();
+
     boolean takeFigures(int count);
 
     boolean hasFigures(int count);
@@ -16,5 +18,4 @@ public interface InterfacePlayerBoardGameBoard {
     boolean hasSufficientTools(int goal);
 
     Optional<Integer> useTool(int idx);
-
 }

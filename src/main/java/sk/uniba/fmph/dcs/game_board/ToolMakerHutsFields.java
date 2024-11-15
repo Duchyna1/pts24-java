@@ -101,7 +101,7 @@ public class ToolMakerHutsFields {
         if (!hutFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
-        //todo player.playerBoard().giveFigure();
+        player.playerBoard().giveFigure();
         return false;
     }
 

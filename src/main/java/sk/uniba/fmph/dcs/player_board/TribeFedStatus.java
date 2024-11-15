@@ -10,6 +10,8 @@ public class TribeFedStatus {
     private final PlayerResourcesAndFood playerResourcesAndFood;
     private final PlayerFigures playerFigures;
 
+    private boolean fieldsHarvested;
+
     private final int startingFields = 0;
     private final int maxFields = 10;
 
@@ -19,6 +21,8 @@ public class TribeFedStatus {
 
         this.playerResourcesAndFood = playerResourcesAndFood;
         this.playerFigures = playerFigures;
+
+        this.fieldsHarvested = false;
     }
 
     /**
@@ -36,11 +40,19 @@ public class TribeFedStatus {
      * Set tribe to unfed and give player food according to number of fields.
      */
     public void newTurn() {
-        this.tribeFed = false;
+        this.harvestFields();
 
-        Effect[] food = new Effect[this.fields];
-        Arrays.fill(food, Effect.FOOD);
-        this.playerResourcesAndFood.takeResources(food);
+        this.tribeFed = false;
+        this.fieldsHarvested = false;
+    }
+
+    private void harvestFields() {
+        if (!this.fieldsHarvested) {
+            Effect[] food = new Effect[this.fields];
+            Arrays.fill(food, Effect.FOOD);
+            this.playerResourcesAndFood.takeResources(food);
+            this.fieldsHarvested = true;
+        }
     }
 
     /**
@@ -49,6 +61,8 @@ public class TribeFedStatus {
      * @return true if tribe was successfully fed.
      */
     public boolean feedTribeIfEnoughFood() {
+        this.harvestFields();
+
         if (this.tribeFed) {
             return true;
         }
@@ -68,10 +82,14 @@ public class TribeFedStatus {
     /**
      * Attempts to feed the tribe with those resources.
      *
-     * @param resources resources
+     * @param resources
+     *            resources
+     *
      * @return true if tribe was successfully fed.
      */
     public boolean feedTribe(final Effect[] resources) {
+        this.harvestFields();
+
         if (this.tribeFed) {
             return true;
         }
@@ -90,15 +108,23 @@ public class TribeFedStatus {
             }
         }
 
+        // checks if player has more food
         Effect[] food = new Effect[numberOfFood + 1];
         Arrays.fill(food, Effect.FOOD);
-
         if (this.playerResourcesAndFood.hasResources(food)) {
             return false;
         }
 
+        // not enough food + resources
         if (numberOfFood + numberOfResources != this.playerFigures.getTotalFigures()) {
             return false;
+        }
+
+        // only using food or resource
+        for (Effect effect : resources) {
+            if (!effect.isResourceOrFood()) {
+                return false;
+            }
         }
 
         this.playerResourcesAndFood.takeResources(resources);
@@ -113,6 +139,8 @@ public class TribeFedStatus {
      * @return true if tribe was fed.
      */
     public boolean setTribeFed() {
+        this.harvestFields();
+
         if (this.tribeFed) {
             return false;
         }

@@ -25,7 +25,7 @@ public class TribeFedStatus {
      * Adds field if bellow 10 fields.
      */
     public void addField() {
-        if (this.fields > this.maxFields) {
+        if (this.fields >= this.maxFields) {
             return;
         }
 
@@ -68,9 +68,7 @@ public class TribeFedStatus {
     /**
      * Attempts to feed the tribe with those resources.
      *
-     * @param resources
-     *            resources
-     *
+     * @param resources resources
      * @return true if tribe was successfully fed.
      */
     public boolean feedTribe(final Effect[] resources) {

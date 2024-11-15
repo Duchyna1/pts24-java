@@ -25,7 +25,7 @@ public class PlayerResourcesAndFood {
      * amount of resource R.
      *
      * @param resources
-     *            - list of resources
+     *            list of resources
      *
      * @return true if player has at least x of each resource R listed in resources (x is number of occurrences of R in
      *         resources).
@@ -48,7 +48,7 @@ public class PlayerResourcesAndFood {
      * This function increases value of resource R by one for each occurrence of R in resources.
      *
      * @param resources
-     *            - list of resources to be taken from board.
+     *            list of resources to be taken from board.
      *
      * @return true - always. Something else should check if player can take resource.
      */

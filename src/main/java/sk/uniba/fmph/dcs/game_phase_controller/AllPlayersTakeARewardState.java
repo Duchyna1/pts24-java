@@ -1,14 +1,22 @@
 package sk.uniba.fmph.dcs.game_phase_controller;
 
 import sk.uniba.fmph.dcs.stone_age.ActionResult;
-import sk.uniba.fmph.dcs.stone_age.Effect;
 import sk.uniba.fmph.dcs.stone_age.HasAction;
-import sk.uniba.fmph.dcs.stone_age.Location;
+import sk.uniba.fmph.dcs.stone_age.InterfaceTakeReward;
 import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
+import sk.uniba.fmph.dcs.stone_age.Location;
+import sk.uniba.fmph.dcs.stone_age.Effect;
 
 import java.util.Collection;
 
-public final class GameEndState implements InterfaceGamePhaseState {
+public final class AllPlayersTakeARewardState implements InterfaceGamePhaseState {
+
+    private final InterfaceTakeReward interfaceTakeReward;
+
+    public AllPlayersTakeARewardState(final InterfaceTakeReward interfaceTakeReward) {
+        this.interfaceTakeReward = interfaceTakeReward;
+    }
+
     @Override
     public ActionResult placeFigures(final PlayerOrder player, final Location location, final int figuresCount) {
         return ActionResult.FAILURE;
@@ -47,11 +55,16 @@ public final class GameEndState implements InterfaceGamePhaseState {
 
     @Override
     public ActionResult makeAllPlayersTakeARewardChoice(final PlayerOrder player, final Effect reward) {
-        return ActionResult.FAILURE;
+        boolean success = interfaceTakeReward.takeReward(player, reward);
+        if (success) {
+            return ActionResult.ACTION_DONE;
+        } else {
+            return ActionResult.FAILURE;
+        }
     }
 
     @Override
     public HasAction tryToMakeAutomaticAction(final PlayerOrder player) {
-        return HasAction.WAITING_FOR_PLAYER_ACTION;
+        return interfaceTakeReward.tryMakeAction(player);
     }
 }

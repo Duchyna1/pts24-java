@@ -2,10 +2,12 @@ package sk.uniba.fmph.dcs.game_board;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.OptionalInt;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
 public final class SimpleBuilding implements Building {
@@ -33,9 +35,9 @@ public final class SimpleBuilding implements Building {
         return OptionalInt.of(sum);
     }
 
-    // TODO
     @Override
     public String state() {
-        return "TODO";
+        Map<String, String> state = Map.of("requiredResources", requiredResources.toString());
+        return new JSONObject(state).toString();
     }
 }

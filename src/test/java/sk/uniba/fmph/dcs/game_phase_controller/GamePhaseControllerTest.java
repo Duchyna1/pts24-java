@@ -3,18 +3,16 @@ package sk.uniba.fmph.dcs.game_phase_controller;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Test.None;
+import sk.uniba.fmph.dcs.stone_age.ActionResult;
+import sk.uniba.fmph.dcs.stone_age.Effect;
+import sk.uniba.fmph.dcs.stone_age.HasAction;
+import sk.uniba.fmph.dcs.stone_age.Location;
+import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Collection;
-
-import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
-import sk.uniba.fmph.dcs.stone_age.Location;
-import sk.uniba.fmph.dcs.stone_age.ActionResult;
-import sk.uniba.fmph.dcs.stone_age.HasAction;
-import sk.uniba.fmph.dcs.stone_age.Effect;
 
 import static org.junit.Assert.*;
 

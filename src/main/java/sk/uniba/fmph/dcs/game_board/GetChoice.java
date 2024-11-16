@@ -6,7 +6,8 @@ public class GetChoice implements EvaluateCivilisationCardImmediateEffect {
     private int numberOfResources;
 
     /**
-     * @param numberOfResources number of resources available to choose.
+     * @param numberOfResources
+     *            number of resources available to choose.
      */
     public GetChoice(final int numberOfResources) {
         this.numberOfResources = numberOfResources;
@@ -15,8 +16,11 @@ public class GetChoice implements EvaluateCivilisationCardImmediateEffect {
     /**
      * gives one resource of any type.
      *
-     * @param player player to give resource to
-     * @param choice resource wanted
+     * @param player
+     *            player to give resource to
+     * @param choice
+     *            resource wanted
+     *
      * @return true if player can take resource, false otherwise
      */
     @Override
@@ -28,7 +32,7 @@ public class GetChoice implements EvaluateCivilisationCardImmediateEffect {
             return false;
         }
         numberOfResources--;
-        player.playerBoard().giveEffect(new Effect[]{choice});
+        player.playerBoard().giveEffect(new Effect[] {choice});
         return true;
     }
 }

@@ -1,6 +1,5 @@
 package sk.uniba.fmph.dcs.game_board;
 
-
 public final class Throw {
     private static final int DICESIDES = 6;
 
@@ -15,7 +14,9 @@ public final class Throw {
     /**
      * renamed to hod so that it won't conflict with compilers.
      *
-     * @param dices number of dices to throw
+     * @param dices
+     *            number of dices to throw
+     *
      * @return resulting throws
      */
     public static int[] hod(final int dices) {

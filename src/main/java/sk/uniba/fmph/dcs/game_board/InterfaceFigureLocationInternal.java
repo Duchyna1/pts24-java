@@ -15,6 +15,6 @@ public interface InterfaceFigureLocationInternal {
 
     HasAction tryToMakeAction(Player player);
 
-    boolean newTurn();  // Returns true if the end of the game is implied by the given location
+    boolean newTurn(); // Returns true if the end of the game is implied by the given location
 
 }

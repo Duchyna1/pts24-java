@@ -6,11 +6,11 @@ import sk.uniba.fmph.dcs.stone_age.InterfaceToolUse;
 public final class CurrentThrow implements InterfaceToolUse {
 
     public CurrentThrow(final Effect throwsFor, final int throwResult) {
-        //todo
+        // todo
     }
 
     public void initiate(final Player player, final Effect effect, final int dices) {
-        return; //todo
+        return; // todo
     }
 
     @Override

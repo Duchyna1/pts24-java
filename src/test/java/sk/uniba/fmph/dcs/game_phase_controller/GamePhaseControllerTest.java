@@ -123,26 +123,26 @@ public class GamePhaseControllerTest {
     private void mockSetup(String description) {
         for (String part : description.split(" ")) {
             StateMock mock = switch (part.charAt(0)) {
-                case 'p' -> placeFiguresState;
-                case 'm' -> makeActionState;
-                case 'f' -> feedTribeState;
-                case 'n' -> newRoundState;
-                case 'g' -> gameEndState;
-                case 'w' -> waitingForToolUseState;
-                case 'a' -> allPlayersTakeARewardState;
-                default -> throw new IllegalStateException("Unexpected value: " + part.charAt(0));
+            case 'p' -> placeFiguresState;
+            case 'm' -> makeActionState;
+            case 'f' -> feedTribeState;
+            case 'n' -> newRoundState;
+            case 'g' -> gameEndState;
+            case 'w' -> waitingForToolUseState;
+            case 'a' -> allPlayersTakeARewardState;
+            default -> throw new IllegalStateException("Unexpected value: " + part.charAt(0));
             };
 
             for (char action : part.substring(1).toCharArray()) {
                 switch (action) {
-                    case 'A' -> mock.expectedHasAction.add(HasAction.AUTOMATIC_ACTION_DONE);
-                    case 'N' -> mock.expectedHasAction.add(HasAction.NO_ACTION_POSSIBLE);
-                    case 'W' -> mock.expectedHasAction.add(HasAction.WAITING_FOR_PLAYER_ACTION);
-                    case 'F' -> mock.expectedActionResults.add(ActionResult.FAILURE);
-                    case 'D' -> mock.expectedActionResults.add(ActionResult.ACTION_DONE);
-                    case 'R' -> mock.expectedActionResults.add(ActionResult.ACTION_DONE_ALL_PLAYERS_TAKE_A_REWARD);
-                    case 'T' -> mock.expectedActionResults.add(ActionResult.ACTION_DONE_WAIT_FOR_TOOL_USE);
-                    default -> throw new IllegalStateException("Unexpected value: " + action);
+                case 'A' -> mock.expectedHasAction.add(HasAction.AUTOMATIC_ACTION_DONE);
+                case 'N' -> mock.expectedHasAction.add(HasAction.NO_ACTION_POSSIBLE);
+                case 'W' -> mock.expectedHasAction.add(HasAction.WAITING_FOR_PLAYER_ACTION);
+                case 'F' -> mock.expectedActionResults.add(ActionResult.FAILURE);
+                case 'D' -> mock.expectedActionResults.add(ActionResult.ACTION_DONE);
+                case 'R' -> mock.expectedActionResults.add(ActionResult.ACTION_DONE_ALL_PLAYERS_TAKE_A_REWARD);
+                case 'T' -> mock.expectedActionResults.add(ActionResult.ACTION_DONE_WAIT_FOR_TOOL_USE);
+                default -> throw new IllegalStateException("Unexpected value: " + action);
                 }
             }
         }

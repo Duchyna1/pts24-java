@@ -17,8 +17,10 @@ public class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEf
     private final InterfaceGamePhaseController controller;
 
     /**
-     * @param menu RewardMenu that is already existing
-     * @param controller controller to call in performEffect
+     * @param menu
+     *            RewardMenu that is already existing
+     * @param controller
+     *            controller to call in performEffect
      */
     public AllPlayersTakeReward(final RewardMenu menu, final InterfaceGamePhaseController controller) {
         this.menu = menu;
@@ -47,8 +49,11 @@ public class AllPlayersTakeReward implements EvaluateCivilisationCardImmediateEf
     /**
      * call controller.
      *
-     * @param player player that takes from menu
-     * @param choice resource to take from menu
+     * @param player
+     *            player that takes from menu
+     * @param choice
+     *            resource to take from menu
+     *
      * @return true if resource was successfully taken
      */
     @Override

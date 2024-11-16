@@ -9,15 +9,19 @@ public class GetCard implements EvaluateCivilisationCardImmediateEffect {
     private final CivilizationCardDeck deck;
 
     /**
-     * @param deck to draw cards from
+     * @param deck
+     *            to draw cards from
      */
     public GetCard(final CivilizationCardDeck deck) {
         this.deck = deck;
     }
 
     /**
-     * @param player gives player top card of the deck
-     * @param choice ignored
+     * @param player
+     *            gives player top card of the deck
+     * @param choice
+     *            ignored
+     *
      * @return true if card exists
      */
     @Override

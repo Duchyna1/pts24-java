@@ -9,7 +9,8 @@ public class GetSomethingFixed implements EvaluateCivilisationCardImmediateEffec
     private final List<Effect> effects;
 
     /**
-     * @param effect list of effects that can be chosen.
+     * @param effect
+     *            list of effects that can be chosen.
      */
     public GetSomethingFixed(final List<Effect> effect) {
         effects = new ArrayList<>();
@@ -19,8 +20,11 @@ public class GetSomethingFixed implements EvaluateCivilisationCardImmediateEffec
     /**
      * give all resources to player.
      *
-     * @param player player to give choice to
-     * @param choice ignores
+     * @param player
+     *            player to give choice to
+     * @param choice
+     *            ignores
+     *
      * @return true - it is always possible to give resources to player
      */
     @Override

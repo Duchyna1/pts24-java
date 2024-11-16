@@ -11,7 +11,7 @@ public final class GetSomethingThrow implements EvaluateCivilisationCardImmediat
     public GetSomethingThrow(final Effect resource) {
         this.resource = resource;
 
-        int something = 0; //todo
+        int something = 0; // todo
         currentThrow = new CurrentThrow(resource, something);
     }
 
@@ -21,7 +21,7 @@ public final class GetSomethingThrow implements EvaluateCivilisationCardImmediat
             return false;
         }
         currentThrow.initiate(player, choice, 2);
-        int pocet = 0; //todo
+        int pocet = 0; // todo
         Effect[] res = new Effect[pocet];
         Arrays.fill(res, choice);
         player.playerBoard().giveEffect(res);

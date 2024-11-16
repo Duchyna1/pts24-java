@@ -1,11 +1,12 @@
 package sk.uniba.fmph.dcs.game_phase_controller;
 
-import java.util.Collection;
-import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
-import sk.uniba.fmph.dcs.stone_age.Location;
 import sk.uniba.fmph.dcs.stone_age.ActionResult;
-import sk.uniba.fmph.dcs.stone_age.HasAction;
 import sk.uniba.fmph.dcs.stone_age.Effect;
+import sk.uniba.fmph.dcs.stone_age.HasAction;
+import sk.uniba.fmph.dcs.stone_age.Location;
+import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
+
+import java.util.Collection;
 
 public interface InterfaceGamePhaseState {
     ActionResult placeFigures(PlayerOrder player, Location location, int figuresCount);

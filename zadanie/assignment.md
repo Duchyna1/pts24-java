@@ -4,7 +4,7 @@ Your task is to construct a component implementing the logic of board game Stone
 
 ## Design
 
-I prepared a [design](pts24.png) template for your implementation. Besides that I prepared [simple description of the classes](classes.md) with estimations 
+I prepared a [design](diagram.png) template for your implementation. Besides that I prepared [simple description of the classes](classes.md) with estimations 
 
 Note that the design is by no means complete. Most notably
 - You have to add appropriate constructors. Chose your constructors in a way that enables good testing. E.g. card deck and building stacks do not need to be full.

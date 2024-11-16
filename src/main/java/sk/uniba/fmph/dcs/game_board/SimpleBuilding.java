@@ -1,5 +1,8 @@
 package sk.uniba.fmph.dcs.game_board;
 
+import org.apache.commons.collections4.CollectionUtils;
+import sk.uniba.fmph.dcs.stone_age.Effect;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;

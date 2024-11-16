@@ -126,7 +126,7 @@ public class TribeFedStatus {
             }
         }
 
-        this.playerResourcesAndFood.takeResources(resources);
+        this.playerResourcesAndFood.giveResources(resources);
         this.tribeFed = true;
 
         return true;

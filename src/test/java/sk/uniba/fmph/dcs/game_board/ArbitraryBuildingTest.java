@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class ArbitraryBuildingTest {
     @Test
     public void test_calculation() {
-        //todo toto by mal spravit niekto iny ako ja zrejme
+        // todo toto by mal spravit niekto iny ako ja zrejme
 
         ArbitraryBuilding building = new ArbitraryBuilding(4);
 

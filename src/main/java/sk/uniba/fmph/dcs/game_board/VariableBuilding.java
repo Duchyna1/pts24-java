@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Map;
 
-
 public final class VariableBuilding implements Building {
     private final int numberOfResources;
     private final int numberOfResourcesTypes;

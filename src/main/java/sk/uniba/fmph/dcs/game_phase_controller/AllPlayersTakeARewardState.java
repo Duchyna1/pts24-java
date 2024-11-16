@@ -24,7 +24,7 @@ public final class AllPlayersTakeARewardState implements InterfaceGamePhaseState
 
     @Override
     public ActionResult makeAction(final PlayerOrder player, final Location location,
-                                   final Collection<Effect> inputResources, final Collection<Effect> outputResources) {
+            final Collection<Effect> inputResources, final Collection<Effect> outputResources) {
         return ActionResult.FAILURE;
     }
 

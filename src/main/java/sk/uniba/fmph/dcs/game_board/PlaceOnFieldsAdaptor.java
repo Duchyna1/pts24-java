@@ -8,15 +8,19 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
     private final ToolMakerHutsFields fields;
 
     /**
-     * @param fields using methods from ToolMakerHutsFields
+     * @param fields
+     *            using methods from ToolMakerHutsFields
      */
     public PlaceOnFieldsAdaptor(final ToolMakerHutsFields fields) {
         this.fields = fields;
     }
 
     /**
-     * @param player      player that places figures
-     * @param figureCount number of figures to place
+     * @param player
+     *            player that places figures
+     * @param figureCount
+     *            number of figures to place
+     *
      * @return true if move is possible
      */
     @Override
@@ -30,8 +34,11 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
     /**
      * does field allow for player to place figures.
      *
-     * @param player player that places figures
-     * @param count  number of figures
+     * @param player
+     *            player that places figures
+     * @param count
+     *            number of figures
+     *
      * @return `NO_ACTION_POSSIBLE` when player cant place figures on field, `WAITING_FOR_PLAYER_ACTION` otherwise
      */
     @Override
@@ -51,9 +58,13 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
     /**
      * resolve fields.
      *
-     * @param player          player that wants to resolve
-     * @param inputResources  really don't know todo
-     * @param outputResources don't know either todo
+     * @param player
+     *            player that wants to resolve
+     * @param inputResources
+     *            really don't know todo
+     * @param outputResources
+     *            don't know either todo
+     *
      * @return ACTION_DONE when player can resolve fields, FAILURE otherwise
      */
     @Override
@@ -66,12 +77,14 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
         }
     }
 
-    //todo
+    // todo
 
     /**
      * does exactly nothing.
      *
-     * @param player player to do nothing with
+     * @param player
+     *            player to do nothing with
+     *
      * @return false
      */
     @Override
@@ -79,12 +92,14 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
         return false;
     }
 
-    //todo
+    // todo
 
     /**
      * does exactly nothing.
      *
-     * @param player player to do nothing with
+     * @param player
+     *            player to do nothing with
+     *
      * @return null
      */
     @Override
@@ -92,7 +107,7 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
         return null;
     }
 
-    //todo
+    // todo
 
     /**
      * does exactly nothing.

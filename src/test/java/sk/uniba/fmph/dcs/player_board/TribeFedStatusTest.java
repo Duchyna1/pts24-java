@@ -30,7 +30,7 @@ public class TribeFedStatusTest {
         for (int i = 0; i < 10; i++) {
             tfs.newTurn();
         }
-        assert !(prf.hasResources(new Effect[]{Effect.FOOD}));
+        assert !(prf.hasResources(new Effect[] { Effect.FOOD }));
 
         tfs.addField();
         for (int i = 0; i < 10; i++) {
@@ -99,34 +99,33 @@ public class TribeFedStatusTest {
         figures.addNewFigure();
         tfs.newTurn();// 7 figures
         figures.newTurn();
-        Effect[] allResources = {Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE,
-                Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.GOLD, Effect.GOLD,
-                Effect.BUILDING, Effect.ONE_TIME_TOOL2, Effect.ONE_TIME_TOOL3};
+        Effect[] allResources = { Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD, Effect.CLAY,
+                Effect.STONE, Effect.GOLD, Effect.GOLD, Effect.GOLD, Effect.BUILDING, Effect.ONE_TIME_TOOL2,
+                Effect.ONE_TIME_TOOL3 };
         resources.takeResources(allResources);
         boolean ans = tfs.feedTribeIfEnoughFood();
         assert !ans;
         ans = tfs.feedTribe(allResources);
         assert !ans;
-        ans = tfs.feedTribe(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE,
-                Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.ONE_TIME_TOOL2,
-                Effect.ONE_TIME_TOOL3});
+        ans = tfs.feedTribe(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD,
+                Effect.CLAY, Effect.STONE, Effect.ONE_TIME_TOOL2, Effect.ONE_TIME_TOOL3 });
         assert !ans;
 
-        ans = tfs.feedTribe(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE,
-                Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.GOLD, Effect.GOLD});
+        ans = tfs.feedTribe(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD,
+                Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.GOLD, Effect.GOLD });
         assert !ans;
 
-        ans = tfs.feedTribe(new Effect[]{Effect.GOLD, Effect.STONE,
-                Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.GOLD});
+        ans = tfs.feedTribe(new Effect[] { Effect.GOLD, Effect.STONE, Effect.WOOD, Effect.CLAY, Effect.STONE,
+                Effect.GOLD, Effect.GOLD });
         assert !ans;
 
-        ans = tfs.feedTribe(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE,
-                Effect.WOOD, Effect.CLAY, Effect.STONE});
+        ans = tfs.feedTribe(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD,
+                Effect.CLAY, Effect.STONE });
         assert ans;
 
         tfs.newTurn();
-        ans = tfs.feedTribe(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE,
-                Effect.WOOD, Effect.CLAY, Effect.STONE});
+        ans = tfs.feedTribe(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD,
+                Effect.CLAY, Effect.STONE });
         assert !ans;
     }
 
@@ -135,7 +134,7 @@ public class TribeFedStatusTest {
         PlayerResourcesAndFood resourcesAndFood = new PlayerResourcesAndFood();
         PlayerFigures figures = new PlayerFigures();
         TribeFedStatus tfs = new TribeFedStatus(resourcesAndFood, figures);
-        resourcesAndFood.takeResources(new Effect[]{});
+        resourcesAndFood.takeResources(new Effect[] {});
 
         for (int i = 0; i < 3; i++) {
             tfs.addField();
@@ -165,7 +164,7 @@ public class TribeFedStatusTest {
         assert ans;
 
         tfs.newTurn();
-        resourcesAndFood.takeResources(new Effect[]{Effect.FOOD, Effect.FOOD});
+        resourcesAndFood.takeResources(new Effect[] { Effect.FOOD, Effect.FOOD });
         ans = tfs.setTribeFed();
         assert !ans;
 
@@ -178,9 +177,8 @@ public class TribeFedStatusTest {
         PlayerFigures figures = new PlayerFigures();
         PlayerResourcesAndFood resourcesAndFood = new PlayerResourcesAndFood();
         TribeFedStatus tfs = new TribeFedStatus(resourcesAndFood, figures);
-        resourcesAndFood.takeResources(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.FOOD,
-                Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.GOLD, Effect.STONE,
-                Effect.CLAY, Effect.WOOD});
+        resourcesAndFood.takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD,
+                Effect.GOLD, Effect.GOLD, Effect.STONE, Effect.CLAY, Effect.WOOD });
 
         tfs.feedTribeIfEnoughFood();
         assert tfs.isTribeFed();
@@ -190,18 +188,15 @@ public class TribeFedStatusTest {
         tfs.newTurn();
         tfs.feedTribeIfEnoughFood();
         assert !tfs.isTribeFed();
-        tfs.feedTribe(new Effect[]{Effect.GOLD, Effect.GOLD, Effect.STONE,
-                Effect.CLAY, Effect.WOOD});
+        tfs.feedTribe(new Effect[] { Effect.GOLD, Effect.GOLD, Effect.STONE, Effect.CLAY, Effect.WOOD });
         assert tfs.isTribeFed();
-        tfs.feedTribe(new Effect[]{Effect.GOLD, Effect.GOLD, Effect.STONE,
-                Effect.CLAY, Effect.WOOD});
+        tfs.feedTribe(new Effect[] { Effect.GOLD, Effect.GOLD, Effect.STONE, Effect.CLAY, Effect.WOOD });
         assert tfs.isTribeFed();
 
         tfs.newTurn();
         tfs.feedTribeIfEnoughFood();
         assert !tfs.isTribeFed();
-        tfs.feedTribe(new Effect[]{Effect.GOLD, Effect.GOLD, Effect.STONE,
-                Effect.CLAY, Effect.WOOD});
+        tfs.feedTribe(new Effect[] { Effect.GOLD, Effect.GOLD, Effect.STONE, Effect.CLAY, Effect.WOOD });
         System.out.println(resourcesAndFood.state());
         assert !tfs.isTribeFed();
         tfs.setTribeFed();

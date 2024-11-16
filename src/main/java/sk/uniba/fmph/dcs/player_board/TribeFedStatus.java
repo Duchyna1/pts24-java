@@ -34,7 +34,7 @@ public class TribeFedStatus {
         }
 
         this.fields++;
-        playerResourcesAndFood.takeResources(new Effect[]{Effect.FIELD});
+        playerResourcesAndFood.takeResources(new Effect[] {Effect.FIELD});
     }
 
     /**
@@ -83,7 +83,9 @@ public class TribeFedStatus {
     /**
      * Attempts to feed the tribe with those resources.
      *
-     * @param resources resources
+     * @param resources
+     *            resources
+     *
      * @return true if tribe was successfully fed.
      */
     public boolean feedTribe(final Effect[] resources) {

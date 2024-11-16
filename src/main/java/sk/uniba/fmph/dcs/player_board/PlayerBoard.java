@@ -26,7 +26,7 @@ public class PlayerBoard {
     }
 
     public PlayerTools getPlayerTools() {
-        return this.playerFigures;
+        return this.playerTools;
     }
 
     public PlayerCivilisationCards getPlayerCivilisationCards() {

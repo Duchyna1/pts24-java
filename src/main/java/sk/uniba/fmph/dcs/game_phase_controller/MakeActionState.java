@@ -153,10 +153,20 @@ public class MakeActionState implements InterfaceGamePhaseState {
      */
     @Override
     public HasAction tryToMakeAutomaticAction(final PlayerOrder player) {
+        int numberOfActions = 0;
+        Location location = null;
         for (Location loc : places.keySet()) {
-            if (places.get(loc).makeAction(player, null, null) == ActionResult.ACTION_DONE) {
-                return HasAction.AUTOMATIC_ACTION_DONE;
+            if (places.get(loc).tryToMakeAction(player) == HasAction.WAITING_FOR_PLAYER_ACTION) {
+                numberOfActions++;
+                location = loc;
             }
+        }
+        if (numberOfActions == 0) {
+            return HasAction.NO_ACTION_POSSIBLE;
+        }
+        if (numberOfActions == 1) {
+            places.get(location).makeAction(player, null, null);
+            return HasAction.AUTOMATIC_ACTION_DONE;
         }
         return HasAction.WAITING_FOR_PLAYER_ACTION;
     }

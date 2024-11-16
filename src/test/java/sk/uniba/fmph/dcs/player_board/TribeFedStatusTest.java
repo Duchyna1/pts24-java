@@ -43,7 +43,7 @@ public class TribeFedStatusTest {
         Arrays.fill(ef2, Effect.FOOD);
         assert !(prf.hasResources(ef2));
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 9; i++) {
             trf.addField();
         }
 
@@ -69,5 +69,34 @@ public class TribeFedStatusTest {
         for (int i = 0; i < 5; i++) {
             trf.addField();
         }
+        boolean ans = trf.feedTribeIfEnoughFood();
+        assert (ans);
+        assert (trf.isTribeFed());
+        assert (trf.isTribeFed());
+
+        trf.newTurn();
+        figures.addNewFigure();
+        ans = trf.feedTribeIfEnoughFood();
+        assert (!ans);
+        assert (!trf.isTribeFed());
+
+        trf.newTurn();
+        trf.addField();
+        ans = trf.feedTribeIfEnoughFood();
+        assert (ans);
+        assert (trf.isTribeFed());
+    }
+
+    @Test
+    public void testFeedTribe() {
+        PlayerResourcesAndFood resources = new PlayerResourcesAndFood();
+        PlayerFigures figures = new PlayerFigures();
+        TribeFedStatus trf = new TribeFedStatus(resources, figures);
+        figures.addNewFigure();
+        figures.addNewFigure();
+        resources.takeResources(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD,
+                Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.BUILDING,
+                Effect.ONE_TIME_TOOL2, Effect.ONE_TIME_TOOL3});
+
     }
 }

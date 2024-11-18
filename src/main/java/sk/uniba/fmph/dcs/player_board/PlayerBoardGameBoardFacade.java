@@ -15,9 +15,12 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     private final int minusPointsForNotFeeding = -10;
 
     /**
-     * Constructs a new PlayerBoardGameBoardFacade and initializes the PlayerBoard.
+     * Constructs a {@code PlayerBoardGameBoardFacade} with the specified player board.
+     *
+     * @param playerBoard
+     *            the player board to be used for this facade
      */
-    public PlayerBoardGameBoardFacade(PlayerBoard playerBoard) {
+    public PlayerBoardGameBoardFacade(final PlayerBoard playerBoard) {
         this.playerBoard = playerBoard;
     }
 

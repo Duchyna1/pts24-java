@@ -6,7 +6,7 @@ public interface InterfaceStoneAgeGame {
     boolean makeAction(int playerId, Location location, Effect[] usedResources, Effect[] desiredResources);
 
     boolean skipAction(int playerId, Location location); // : bool (only if resources are required) todo neviem co to
-    // znamena
+                                                         // znamena
 
     boolean useTools(int playerId, int toolIndex); // : bool {affects last action} todo neviem co to znamena
 

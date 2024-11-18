@@ -1,6 +1,8 @@
 package sk.uniba.fmph.dcs.player_board;
 
-public class PlayerBoard {
+import sk.uniba.fmph.dcs.stone_age.InterfaceGetState;
+
+public class PlayerBoard implements InterfaceGetState {
     private int points;
     private int houses;
     private final PlayerResourcesAndFood playerResourcesAndFood;
@@ -18,6 +20,20 @@ public class PlayerBoard {
 
         this.points = 0;
         this.houses = 0;
+    }
+
+    /**
+     * Initiates the start of a new turn for the player.
+     * <p>
+     * This method updates various components of the player board to reflect the start of a new turn:
+     * - Resets the tribe's fed status and provides food based on fields.
+     * - Resets the number of available player figures.
+     * - Resets the status of the player's tools to unused.
+     */
+    public void newTurn() {
+        this.tribeFedStatus.newTurn();
+        this.playerFigures.newTurn();
+        this.playerTools.newTurn();
     }
 
     /**
@@ -102,6 +118,7 @@ public class PlayerBoard {
      *
      * @return a string representing the current state of the player board
      */
+    @Override
     public String state() {
         return "Points: " + this.points + ", houses: " + this.houses + "\n" +
                 this.playerResourcesAndFood.state() + "\n" +

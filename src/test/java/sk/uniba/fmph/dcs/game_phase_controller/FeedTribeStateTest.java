@@ -48,11 +48,11 @@ public class FeedTribeStateTest {
         HashMap<PlayerOrder, InterfaceFeedTribe> map = new HashMap<>();
         PlayerOrder player1 = new PlayerOrder(1, 1);
         PlayerOrder player2 = new PlayerOrder(2, 2);
-        PlayerOrder player3 = new PlayerOrder(3,3);
+        PlayerOrder player3 = new PlayerOrder(3, 3);
 
-        map.put(player1, new InterfaceFeedTribeMock(2,1,false));
-        map.put(player2, new InterfaceFeedTribeMock(2,1,true));
-        map.put(player3, new InterfaceFeedTribeMock(1,2,false));
+        map.put(player1, new InterfaceFeedTribeMock(2, 1, false));
+        map.put(player2, new InterfaceFeedTribeMock(2, 1, true));
+        map.put(player3, new InterfaceFeedTribeMock(1, 2, false));
 
         FeedTribeState feedState = new FeedTribeState(map);
         assertEquals(feedState.tryToMakeAutomaticAction(player1), HasAction.WAITING_FOR_PLAYER_ACTION);
@@ -66,8 +66,8 @@ public class FeedTribeStateTest {
         PlayerOrder player1 = new PlayerOrder(1, 1);
         PlayerOrder player2 = new PlayerOrder(2, 2);
 
-        map.put(player1, new InterfaceFeedTribeMock(2,2, false));
-        map.put(player2, new InterfaceFeedTribeMock(2,2,true));
+        map.put(player1, new InterfaceFeedTribeMock(2, 2, false));
+        map.put(player2, new InterfaceFeedTribeMock(2, 2, true));
         ArrayList<Effect> resources = new ArrayList<>();
 
         FeedTribeState feedState = new FeedTribeState(map);
@@ -83,8 +83,8 @@ public class FeedTribeStateTest {
         PlayerOrder player2 = new PlayerOrder(2, 2);
         FeedTribeState feedState = new FeedTribeState(map);
 
-        map.put(player1, new InterfaceFeedTribeMock(2,2,false));
-        map.put(player2, new InterfaceFeedTribeMock(2,2, true));
+        map.put(player1, new InterfaceFeedTribeMock(2, 2, false));
+        map.put(player2, new InterfaceFeedTribeMock(2, 2, true));
 
         assertEquals(feedState.doNotFeedThisTurn(player1), ActionResult.FAILURE);
         assertEquals(feedState.doNotFeedThisTurn(player2), ActionResult.ACTION_DONE);

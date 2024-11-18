@@ -11,7 +11,9 @@ import java.util.Optional;
 
 public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, InterfaceNewTurn, InterfacePlayerBoardGameBoard {
     private final PlayerBoard playerBoard;
-    
+
+    private final int minusPointsForNotFeeding = -10;
+
     /**
      * Constructs a new PlayerBoardGameBoardFacade and initializes the PlayerBoard.
      */
@@ -32,11 +34,13 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     /**
      * Feeds the tribe using the provided resources.
      *
-     * @param resources The collection of resources to use for feeding the tribe.
+     * @param resources
+     *            The collection of resources to use for feeding the tribe.
+     *
      * @return {@code true} if the tribe is successfully fed, {@code false} otherwise.
      */
     @Override
-    public boolean feedTribe(Collection<Effect> resources) {
+    public boolean feedTribe(final Collection<Effect> resources) {
         Effect[] resourcesArray = resources.toArray(new Effect[0]);
         return this.playerBoard.getTribeFedStatus().feedTribe(resourcesArray);
     }
@@ -50,11 +54,10 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     public boolean doNotFeedThisTurn() {
         boolean fed = this.playerBoard.getTribeFedStatus().setTribeFed();
         if (fed) {
-            this.playerBoard.addPoints(-10);
+            this.playerBoard.addPoints(this.minusPointsForNotFeeding);
         }
         return fed;
     }
-
 
     /**
      * Checks if the tribe has been fed.
@@ -77,31 +80,35 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     /**
      * Provides resources to the player.
      *
-     * @param stuff The array of effects to give to the player.
+     * @param stuff
+     *            The array of effects to give to the player.
      */
     @Override
-    public void giveEffect(Effect[] stuff) {
+    public void giveEffect(final Effect[] stuff) {
         this.playerBoard.getPlayerResourcesAndFood().giveResources(stuff);
     }
 
     /**
      * Provides end-of-game effects to the player's civilization cards.
      *
-     * @param stuff The array of end-of-game effects to give to the player.
+     * @param stuff
+     *            The array of end-of-game effects to give to the player.
      */
     @Override
-    public void giveEndOfGameEffect(EndOfGameEffect[] stuff) {
+    public void giveEndOfGameEffect(final EndOfGameEffect[] stuff) {
         this.playerBoard.getPlayerCivilisationCards().addEndOfGameEffects(stuff);
     }
 
     /**
      * Takes the specified resources from the player if they are available.
      *
-     * @param stuff The array of resources to be taken.
+     * @param stuff
+     *            The array of resources to be taken.
+     *
      * @return {@code true} if the resources were successfully taken, {@code false} otherwise.
      */
     @Override
-    public boolean takeResources(Effect[] stuff) {
+    public boolean takeResources(final Effect[] stuff) {
         if (this.playerBoard.getPlayerResourcesAndFood().hasResources(stuff)) {
             this.playerBoard.getPlayerResourcesAndFood().takeResources(stuff);
             return true;
@@ -120,11 +127,13 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     /**
      * Takes the specified number of figures from the player if they have enough.
      *
-     * @param count The number of figures to take.
+     * @param count
+     *            The number of figures to take.
+     *
      * @return {@code true} if the figures were successfully taken, {@code false} otherwise.
      */
     @Override
-    public boolean takeFigures(int count) {
+    public boolean takeFigures(final int count) {
         if (this.playerBoard.getPlayerFigures().hasFigures(count)) {
             this.playerBoard.getPlayerFigures().takeFigures(count);
             return true;
@@ -135,33 +144,39 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     /**
      * Checks if the player has at least the specified number of figures.
      *
-     * @param count The number of figures to check for.
+     * @param count
+     *            The number of figures to check for.
+     *
      * @return {@code true} if the player has enough figures, {@code false} otherwise.
      */
     @Override
-    public boolean hasFigures(int count) {
+    public boolean hasFigures(final int count) {
         return this.playerBoard.getPlayerFigures().hasFigures(count);
     }
 
     /**
      * Checks if the player has sufficient tools to meet the specified goal.
      *
-     * @param goal The goal to check against the player's tools.
+     * @param goal
+     *            The goal to check against the player's tools.
+     *
      * @return {@code true} if the player has sufficient tools, {@code false} otherwise.
      */
     @Override
-    public boolean hasSufficientTools(int goal) {
+    public boolean hasSufficientTools(final int goal) {
         return this.playerBoard.getPlayerTools().hasSufficientTools(goal);
     }
 
     /**
      * Uses a tool specified by its index.
      *
-     * @param idx The index of the tool to use.
+     * @param idx
+     *            The index of the tool to use.
+     *
      * @return An {@code Optional} containing the tool's value if valid, or {@code Optional.empty()} if not.
      */
     @Override
-    public Optional<Integer> useTool(int idx) {
+    public Optional<Integer> useTool(final int idx) {
         Integer value = this.playerBoard.getPlayerTools().useTool(idx);
         if (value == null) { // Assuming -1 signifies an error or invalid state
             return Optional.empty();

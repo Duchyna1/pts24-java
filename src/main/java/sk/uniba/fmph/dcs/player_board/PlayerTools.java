@@ -29,7 +29,7 @@ public class PlayerTools {
      */
     public int getToolsCount() {
         int toolsCount = 0;
-        for (int i = 0; i < this.maxMultipleUseTools; i++){
+        for (int i = 0; i < this.maxMultipleUseTools; i++) {
             toolsCount += tools[i];
         }
 

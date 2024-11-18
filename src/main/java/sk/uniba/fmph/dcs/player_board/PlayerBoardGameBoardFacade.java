@@ -17,8 +17,8 @@ public class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Interface
     /**
      * Constructs a new PlayerBoardGameBoardFacade and initializes the PlayerBoard.
      */
-    public PlayerBoardGameBoardFacade() {
-        this.playerBoard = new PlayerBoard();
+    public PlayerBoardGameBoardFacade(PlayerBoard playerBoard) {
+        this.playerBoard = playerBoard;
     }
 
     /**

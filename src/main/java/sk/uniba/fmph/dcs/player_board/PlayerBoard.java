@@ -2,7 +2,7 @@ package sk.uniba.fmph.dcs.player_board;
 
 public class PlayerBoard {
     private int points;
-    private int house;
+    private int houses;
     private final PlayerResourcesAndFood playerResourcesAndFood;
     private final PlayerFigures playerFigures;
     private final PlayerTools playerTools;
@@ -15,6 +15,9 @@ public class PlayerBoard {
         this.playerTools = new PlayerTools();
         this.playerCivilisationCards = new PlayerCivilisationCards();
         this.tribeFedStatus = new TribeFedStatus(this.playerResourcesAndFood, this.playerFigures);
+
+        this.points = 0;
+        this.houses = 0;
     }
 
     public PlayerResourcesAndFood getPlayerResourcesAndFood() {
@@ -37,39 +40,29 @@ public class PlayerBoard {
         return this.tribeFedStatus;
     }
 
-    /**
-     * TODO.
-     *
-     * @param points
-     *
-     * @return TODO
-     */
     public int addPoints(final int points) {
-        // TODO
-        return 0;
+        this.points += points;
+        return this.points;
     }
 
-    /**
-     * TODO.
-     */
     public void addHouse() {
-        // TODO
+        this.houses++;
     }
 
-    /**
-     * TODO.
-     */
     public void addEndOfGamePoints() {
-        // TODO
+        this.points += this.playerCivilisationCards.calculateEndOfGameCivilisationCardsPoints(
+                this.houses,
+                this.playerTools.getToolsCount(),
+                this.tribeFedStatus.getFieldsCount(),
+                this.playerFigures.getTotalFigures());
     }
 
-    /**
-     * TODO.
-     *
-     * @return TODO
-     */
     public String state() {
-        // TODO
-        return "TODO";
+        return "Points: " + this.points + ", houses: " + this.houses + "\n" +
+                this.playerResourcesAndFood.state() + "\n" +
+                this.playerFigures.state() + "\n" +
+                this.playerTools.state() + "\n" +
+                this.playerCivilisationCards.state() + "\n" +
+                this.tribeFedStatus.state();
     }
 }

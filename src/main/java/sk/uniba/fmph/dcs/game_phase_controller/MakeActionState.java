@@ -8,15 +8,21 @@ import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
 import sk.uniba.fmph.dcs.stone_age.InterfaceFigureLocation;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 public class MakeActionState implements InterfaceGamePhaseState {
 
-    private Map<Location, InterfaceFigureLocation> places;
+    private Map<Location, InterfaceFigureLocation> places; // locations, where player has figures
+    private final HashSet<Location> canSkip = new HashSet<Location>(List.of(new Location[] { Location.BUILDING_TILE1,
+            Location.BUILDING_TILE2, Location.BUILDING_TILE3, Location.BUILDING_TILE4, Location.CIVILISATION_CARD1,
+            Location.CIVILISATION_CARD2, Location.CIVILISATION_CARD3, Location.CIVILISATION_CARD4 }));
+    // locations, where player can skip action
 
     /**
      * @param places
-     *            - initial places
+     *            - initial places, where player has figures
      */
     public MakeActionState(final Map<Location, InterfaceFigureLocation> places) {
         this.places = places;
@@ -52,7 +58,12 @@ public class MakeActionState implements InterfaceGamePhaseState {
     @Override
     public ActionResult makeAction(final PlayerOrder player, final Location location,
             final Collection<Effect> inputResources, final Collection<Effect> outputResources) {
-        return places.get(location).makeAction(player, inputResources, outputResources);
+        if (places.get(location) != null) {
+            ActionResult ans = places.get(location).makeAction(player, inputResources, outputResources);
+            places.remove(location);
+            return ans;
+        }
+        return ActionResult.FAILURE;
     }
 
     /**
@@ -61,11 +72,16 @@ public class MakeActionState implements InterfaceGamePhaseState {
      * @param location
      *            - location
      *
-     * @return - always returns ACTION_DONE
+     * @return - always returns ACTION_DONE if player can skip action on this location and has figures there. Returns
+     *         FAILURE otherwise.
      */
     @Override
     public ActionResult skipAction(final PlayerOrder player, final Location location) {
-        return ActionResult.ACTION_DONE;
+        if (canSkip.contains(location) && places.get(location) != null) {
+            places.remove(location);
+            return ActionResult.ACTION_DONE;
+        }
+        return ActionResult.FAILURE;
     }
 
     /**
@@ -154,6 +170,7 @@ public class MakeActionState implements InterfaceGamePhaseState {
         }
         if (numberOfActions == 1) {
             places.get(location).makeAction(player, null, null);
+            places.remove(location);
             return HasAction.AUTOMATIC_ACTION_DONE;
         }
         return HasAction.WAITING_FOR_PLAYER_ACTION;

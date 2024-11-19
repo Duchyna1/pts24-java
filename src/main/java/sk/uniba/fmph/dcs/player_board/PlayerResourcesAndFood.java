@@ -47,7 +47,9 @@ public class PlayerResourcesAndFood {
     /**
      * Takes resources from the player's collection if they have the required quantity.
      *
-     * @param resources the array of resources to be taken from the player.
+     * @param resources
+     *            the array of resources to be taken from the player.
+     *
      * @return true if the resources were successfully taken, false otherwise.
      */
     public boolean takeResources(final Effect[] resources) {
@@ -63,7 +65,9 @@ public class PlayerResourcesAndFood {
     /**
      * Adds the specified resources to the player's collection.
      *
-     * @param resources the array of resources to be added.
+     * @param resources
+     *            the array of resources to be added.
+     *
      * @return true if the resources were successfully added, false otherwise.
      */
     public boolean giveResources(final Effect[] resources) {

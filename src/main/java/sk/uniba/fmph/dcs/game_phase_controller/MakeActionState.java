@@ -15,9 +15,9 @@ import java.util.Map;
 public class MakeActionState implements InterfaceGamePhaseState {
 
     private Map<Location, InterfaceFigureLocation> places; // locations, where player has figures
-    private final HashSet<Location> canSkip = new HashSet<Location>(List.of(new Location[] { Location.BUILDING_TILE1,
+    private final HashSet<Location> canSkip = new HashSet<Location>(List.of(new Location[] {Location.BUILDING_TILE1,
             Location.BUILDING_TILE2, Location.BUILDING_TILE3, Location.BUILDING_TILE4, Location.CIVILISATION_CARD1,
-            Location.CIVILISATION_CARD2, Location.CIVILISATION_CARD3, Location.CIVILISATION_CARD4 }));
+            Location.CIVILISATION_CARD2, Location.CIVILISATION_CARD3, Location.CIVILISATION_CARD4}));
     // locations, where player can skip action
 
     /**

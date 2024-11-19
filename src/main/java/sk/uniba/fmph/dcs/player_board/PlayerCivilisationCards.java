@@ -23,7 +23,8 @@ public class PlayerCivilisationCards {
     }
 
     /**
-     * @param effects - list of effects to be added
+     * @param effects
+     *            - list of effects to be added
      */
     public void addEndOfGameEffects(final EndOfGameEffect[] effects) {
         for (EndOfGameEffect effect : effects) {
@@ -32,15 +33,20 @@ public class PlayerCivilisationCards {
     }
 
     /**
-     * @param buildings - number of buildings
-     * @param tools     - sum of values of multiple use tools (check rules)
-     * @param fields    - number on agriculture track
-     * @param figures   - number of player figures
+     * @param buildings
+     *            - number of buildings
+     * @param tools
+     *            - sum of values of multiple use tools (check rules)
+     * @param fields
+     *            - number on agriculture track
+     * @param figures
+     *            - number of player figures
+     *
      * @return - score from green cards, tools, buildings, tools, agriculture track, figures as said it should be
-     * calculated in rules
+     *         calculated in rules
      */
     public int calculateEndOfGameCivilisationCardsPoints(final int buildings, final int tools, final int fields,
-                                                         final int figures) {
+            final int figures) {
         Map<EndOfGameEffect, Integer> endOfGameEffectsCopy = new HashMap<>();
         for (EndOfGameEffect effect : EndOfGameEffect.values()) {
             endOfGameEffectsCopy.put(effect, endOfGameEffects.get(effect));

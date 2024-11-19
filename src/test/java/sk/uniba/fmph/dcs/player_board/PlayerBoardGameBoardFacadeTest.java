@@ -12,8 +12,8 @@ public class PlayerBoardGameBoardFacadeTest {
     public void doNotFeedThisTurnTest() {
         PlayerBoard pb = new PlayerBoard();
         PlayerBoardGameBoardFacade PBGBF = new PlayerBoardGameBoardFacade(pb);
-        pb.getPlayerResourcesAndFood().takeResources(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD});
-        pb.getPlayerResourcesAndFood().takeResources(new Effect[]{Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.WOOD});
+        pb.getPlayerResourcesAndFood().giveResources(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD});
+        pb.getPlayerResourcesAndFood().giveResources(new Effect[]{Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.WOOD});
         boolean ans = PBGBF.doNotFeedThisTurn();
         assert !ans;
 

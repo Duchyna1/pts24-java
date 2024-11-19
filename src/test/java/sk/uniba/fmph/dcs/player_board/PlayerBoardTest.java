@@ -13,7 +13,7 @@ public class PlayerBoardTest {
         pb.getPlayerTools().addTool();
         assert !pb.getTribeFedStatus().isTribeFed();
         pb.getPlayerResourcesAndFood()
-                .takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD });
+                .giveResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD });
         boolean ans = pb.getTribeFedStatus().feedTribeIfEnoughFood();
         assert ans;
         assert pb.getPlayerFigures().getTotalFigures() == 6;
@@ -68,7 +68,7 @@ public class PlayerBoardTest {
         pb.addHouse();
         pb.addHouse(); // 2 houses
         pb.getPlayerResourcesAndFood()
-                .takeResources(new Effect[] { Effect.FOOD, Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD });
+                .giveResources(new Effect[] { Effect.FOOD, Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD });
         // 2 + 3 + 4 + 5 + 6 = 20
         expectedPoints += 20;
 

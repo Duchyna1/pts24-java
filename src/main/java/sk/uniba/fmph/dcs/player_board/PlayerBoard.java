@@ -10,6 +10,7 @@ public class PlayerBoard implements InterfaceGetState {
     private final PlayerTools playerTools;
     private final PlayerCivilisationCards playerCivilisationCards;
     private final TribeFedStatus tribeFedStatus;
+    private boolean endOfGamePointsAdded;
 
     public PlayerBoard() {
         this.playerResourcesAndFood = new PlayerResourcesAndFood();
@@ -20,6 +21,7 @@ public class PlayerBoard implements InterfaceGetState {
 
         this.points = 0;
         this.houses = 0;
+        this.endOfGamePointsAdded = false;
     }
 
     /**
@@ -105,10 +107,15 @@ public class PlayerBoard implements InterfaceGetState {
      * cards, tools, fields, figures, and resources.
      */
     public void addEndOfGamePoints() {
+        if (this.endOfGamePointsAdded) {
+            return;
+        }
         this.points += this.playerCivilisationCards.calculateEndOfGameCivilisationCardsPoints(this.houses,
                 this.playerTools.getToolsCount(), this.tribeFedStatus.getFieldsCount(),
                 this.playerFigures.getTotalFigures());
         this.points += this.playerResourcesAndFood.numberOfResourcesForFinalPoints();
+
+        this.endOfGamePointsAdded = true;
     }
 
     /**

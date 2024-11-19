@@ -50,23 +50,23 @@ public class PlayerResourcesAndFoodTest {
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == 0;
         int sum = 0;
 
-        sum += 2;
+        sum += 0;
         playerResourcesAndFood.giveResources(new Effect[] { Effect.FOOD });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 3;
+        sum += 1;
         playerResourcesAndFood.giveResources(new Effect[] { Effect.WOOD });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 4;
+        sum += 1;
         playerResourcesAndFood.giveResources(new Effect[] { Effect.CLAY });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 5;
+        sum += 1;
         playerResourcesAndFood.giveResources(new Effect[] { Effect.STONE });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 6;
+        sum += 1;
         playerResourcesAndFood.giveResources(new Effect[] { Effect.GOLD });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 

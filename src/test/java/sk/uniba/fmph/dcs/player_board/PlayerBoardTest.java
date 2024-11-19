@@ -64,13 +64,12 @@ public class PlayerBoardTest {
             pb.getTribeFedStatus().addField();
             pb.newTurn();
         } // 4 fields
-        expectedPoints += 20;
         pb.addHouse();
         pb.addHouse(); // 2 houses
         pb.getPlayerResourcesAndFood()
                 .giveResources(new Effect[] { Effect.FOOD, Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD });
-        // 2 + 3 + 4 + 5 + 6 = 20
-        expectedPoints += 20;
+        // 4 resources
+        expectedPoints += 4;
 
         pb.getPlayerCivilisationCards()
                 .addEndOfGameEffects(new EndOfGameEffect[] { EndOfGameEffect.SHAMAN, EndOfGameEffect.SHAMAN });

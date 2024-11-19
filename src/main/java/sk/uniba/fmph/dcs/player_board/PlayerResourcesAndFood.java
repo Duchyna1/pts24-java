@@ -64,15 +64,10 @@ public class PlayerResourcesAndFood {
 
     /**
      * Adds the specified resources to the player's collection.
-
      *
      * @param resources
      *            the array of resources to be added.
      *
-     * @param resources
-     *            the array of resources to be added.
-     *
-
      * @return true if the resources were successfully added, false otherwise.
      */
     public boolean giveResources(final Effect[] resources) {

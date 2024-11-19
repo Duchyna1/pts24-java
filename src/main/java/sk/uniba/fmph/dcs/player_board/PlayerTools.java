@@ -23,6 +23,20 @@ public class PlayerTools {
     }
 
     /**
+     * Calculates and returns the total count of tools available to the player.
+     *
+     * @return the total number of tools
+     */
+    public int getToolsCount() {
+        int toolsCount = 0;
+        for (int i = 0; i < this.maxMultipleUseTools; i++) {
+            toolsCount += tools[i];
+        }
+
+        return toolsCount;
+    }
+
+    /**
      * Resets tools such that all are unused.
      */
     public void newTurn() {

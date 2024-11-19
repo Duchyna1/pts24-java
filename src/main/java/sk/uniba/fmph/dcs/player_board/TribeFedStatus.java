@@ -15,6 +15,14 @@ public class TribeFedStatus {
     private final int startingFields = 0;
     private final int maxFields = 10;
 
+    /**
+     * Constructs a new TribeFedStatus with the specified player resources and figures.
+     *
+     * @param playerResourcesAndFood
+     *            the player's resources and food
+     * @param playerFigures
+     *            the player's figures
+     */
     public TribeFedStatus(final PlayerResourcesAndFood playerResourcesAndFood, final PlayerFigures playerFigures) {
         this.tribeFed = false;
         this.fields = this.startingFields;
@@ -26,7 +34,16 @@ public class TribeFedStatus {
     }
 
     /**
-     * Adds field if bellow 10 fields.
+     * Gets the count of fields.
+     *
+     * @return the number of fields
+     */
+    public int getFieldsCount() {
+        return this.fields;
+    }
+
+    /**
+     * Adds a field if the current number of fields is below the maximum limit of fields.
      */
     public void addField() {
         if (this.fields >= this.maxFields) {
@@ -38,7 +55,7 @@ public class TribeFedStatus {
     }
 
     /**
-     * Set tribe to unfed and give player food according to number of fields.
+     * Starts a new turn, setting the tribe to unfed and giving the player food according to the number of fields.
      */
     public void newTurn() {
         this.harvestFields();
@@ -47,6 +64,9 @@ public class TribeFedStatus {
         this.fieldsHarvested = false;
     }
 
+    /**
+     * Harvests fields to gather food based on the current number of fields. This can only be done once per turn.
+     */
     private void harvestFields() {
         if (!this.fieldsHarvested) {
             Effect[] food = new Effect[this.fields];
@@ -59,7 +79,7 @@ public class TribeFedStatus {
     /**
      * Attempts to feed the tribe with only food.
      *
-     * @return true if tribe was successfully fed.
+     * @return true if the tribe was successfully fed
      */
     public boolean feedTribeIfEnoughFood() {
         this.harvestFields();
@@ -81,7 +101,7 @@ public class TribeFedStatus {
     }
 
     /**
-     * Attempts to feed the tribe with those resources.
+     * Attempts to feed the tribe with the specified resources.
      *
      * @param resources resources
      * @return true if tribe was successfully fed.
@@ -133,9 +153,9 @@ public class TribeFedStatus {
     }
 
     /**
-     * Feeds the tribe if player does not have enough food. Should lose 10 victory points after this.
+     * Feeds the tribe if the player does not have enough food, causing the player to lose 10 victory points.
      *
-     * @return true if tribe was fed.
+     * @return true if the tribe was fed
      */
     public boolean setTribeFed() {
         this.harvestFields();
@@ -163,14 +183,18 @@ public class TribeFedStatus {
     }
 
     /**
-     * @return true if tribe is fed
+     * Checks if the tribe is fed.
+     *
+     * @return true if the tribe is fed
      */
     public boolean isTribeFed() {
         return this.tribeFed;
     }
 
     /**
-     * @return string with fed status and number of fields.
+     * Returns the current state of the tribe's fed status and the number of fields.
+     *
+     * @return a string representing the fed status and number of fields
      */
     public String state() {
         return "Fed: " + this.tribeFed + ", # of fields: " + this.fields;

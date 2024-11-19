@@ -28,15 +28,16 @@ public class PlaceFigureStateTest {
         @Override
         public HasAction tryToPlaceFigures(PlayerOrder player, int count) {
             HasAction result = switch (player.getPlayers()) {
-                case 1 -> HasAction.AUTOMATIC_ACTION_DONE;
-                case 2 -> HasAction.WAITING_FOR_PLAYER_ACTION;
-                default -> HasAction.NO_ACTION_POSSIBLE;
+            case 1 -> HasAction.AUTOMATIC_ACTION_DONE;
+            case 2 -> HasAction.WAITING_FOR_PLAYER_ACTION;
+            default -> HasAction.NO_ACTION_POSSIBLE;
             };
             return result;
         }
 
         @Override
-        public ActionResult makeAction(PlayerOrder player, Collection<Effect> inputResources, Collection<Effect> outputResources) {
+        public ActionResult makeAction(PlayerOrder player, Collection<Effect> inputResources,
+                Collection<Effect> outputResources) {
             return null;
         }
 
@@ -85,5 +86,3 @@ public class PlaceFigureStateTest {
     }
 
 }
-
-

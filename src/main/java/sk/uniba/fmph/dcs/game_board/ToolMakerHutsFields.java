@@ -65,7 +65,7 @@ public class ToolMakerHutsFields {
         if (!toolMakerFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
-        player.playerBoard().giveEffect(new Effect[] {Effect.TOOL});
+        player.playerBoard().giveEffect(new Effect[] { Effect.TOOL });
         return true;
     }
 
@@ -156,7 +156,7 @@ public class ToolMakerHutsFields {
         if (!fieldsFigures.getFirst().equals(player.playerOrder())) {
             return false;
         }
-        player.playerBoard().giveEffect(new Effect[] {Effect.FIELD});
+        player.playerBoard().giveEffect(new Effect[] { Effect.FIELD });
         return false;
     }
 
@@ -174,12 +174,10 @@ public class ToolMakerHutsFields {
     }
 
     /**
-     * reset class so that it can work on new turn.
+     * @return true if all actions are resolved and next turn can start
      */
-    public void newTurn() {
-        toolMakerFigures.clear();
-        hutFigures.clear();
-        fieldsFigures.clear();
+    public boolean newTurn() {
+        return toolMakerFigures.isEmpty() && hutFigures.isEmpty() && fieldsFigures.isEmpty();
     }
 
     /**

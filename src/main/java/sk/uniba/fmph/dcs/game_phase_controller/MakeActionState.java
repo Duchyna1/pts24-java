@@ -52,19 +52,7 @@ public class MakeActionState implements InterfaceGamePhaseState {
     @Override
     public ActionResult makeAction(final PlayerOrder player, final Location location,
             final Collection<Effect> inputResources, final Collection<Effect> outputResources) {
-        Effect[] inputR = new Effect[inputResources.size()];
-        Effect[] outputR = new Effect[outputResources.size()];
-        int helper = 0;
-        for (Effect res : inputResources) {
-            inputR[helper] = res;
-            helper++;
-        }
-        helper = 0;
-        for (Effect res : outputResources) {
-            outputR[helper] = res;
-            helper++;
-        }
-        return places.get(location).makeAction(player, inputR, outputR);
+        return places.get(location).makeAction(player, inputResources, outputResources);
     }
 
     /**

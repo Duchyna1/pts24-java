@@ -10,7 +10,6 @@ import sk.uniba.fmph.dcs.stone_age.InterfaceFigureLocation;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Optional;
 
 public final class NewRoundState implements InterfaceGamePhaseState {
     private final InterfaceFigureLocation[] places;

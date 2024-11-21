@@ -7,7 +7,7 @@ import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class BuildingTileTest {
 
@@ -19,13 +19,13 @@ public class BuildingTileTest {
         Player player1 = new Player(new PlayerOrder(1, 1), null);
         Player player2 = new Player(new PlayerOrder(2, 2), null);
         var ret = t.placeFigures(player1, 2);
-        assertEquals(ret, false);
+        assertFalse(ret);
         ret = t.placeFigures(player1, 1);
-        assertEquals(ret, true);
+        assertTrue(ret);
         ret = t.placeFigures(player1, 1);
-        assertEquals(ret, false);
+        assertFalse(ret);
         ret = t.placeFigures(player2, 1);
-        assertEquals(ret, true);
+        assertTrue(ret);
     }
 
     @Test
@@ -37,10 +37,31 @@ public class BuildingTileTest {
         Player player2 = new Player(new PlayerOrder(2, 2), new PlayerBoardGameBoardFacade(new PlayerBoard()));
         t.placeFigures(player1, 1);
         var ret = t.makeAction(player2, new Effect[] { Effect.WOOD }, new Effect[] {});
-        assertEquals(ret, ActionResult.FAILURE);
+        assertEquals(ActionResult.FAILURE, ret);
         ret = t.makeAction(player1, new Effect[] { Effect.WOOD }, new Effect[] {});
-        assertEquals(ret, ActionResult.ACTION_DONE);
+        assertEquals(ActionResult.ACTION_DONE, ret);
         ret = t.makeAction(player1, new Effect[] {}, new Effect[] {});
-        assertEquals(ret, ActionResult.FAILURE);
+        assertEquals(ActionResult.FAILURE, ret);
+    }
+
+    @Test
+    public void test_tryToMakeAction_PlayerPresent() {
+        var resources = new ArrayList<Effect>();
+        resources.add(Effect.WOOD);
+        var t = new BuildingTile(new SimpleBuilding(resources));
+        Player player1 = new Player(new PlayerOrder(1, 1), new PlayerBoardGameBoardFacade(new PlayerBoard()));
+        t.placeFigures(player1, 1);
+        var ret = t.tryToMakeAction(player1);
+        assertEquals(HasAction.WAITING_FOR_PLAYER_ACTION, ret);
+    }
+
+    @Test
+    public void test_tryToMakeAction_PlayerAbsent() {
+        var resources = new ArrayList<Effect>();
+        resources.add(Effect.WOOD);
+        var t = new BuildingTile(new SimpleBuilding(resources));
+        Player player1 = new Player(new PlayerOrder(1, 1), null);
+        var ret = t.tryToMakeAction(player1);
+        assertEquals(HasAction.NO_ACTION_POSSIBLE, ret);
     }
 }

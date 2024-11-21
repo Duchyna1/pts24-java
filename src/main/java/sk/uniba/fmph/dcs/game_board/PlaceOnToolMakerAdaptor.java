@@ -119,7 +119,6 @@ public class PlaceOnToolMakerAdaptor implements InterfaceFigureLocationInternal 
         return false;
     }
 
-
     /**
      * @return state of tools
      */

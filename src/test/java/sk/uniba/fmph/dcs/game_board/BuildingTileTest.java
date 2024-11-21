@@ -36,11 +36,11 @@ public class BuildingTileTest {
         Player player1 = new Player(new PlayerOrder(1, 1), new PlayerBoardGameBoardFacade(new PlayerBoard()));
         Player player2 = new Player(new PlayerOrder(2, 2), new PlayerBoardGameBoardFacade(new PlayerBoard()));
         t.placeFigures(player1, 1);
-        var ret = t.makeAction(player2, new Effect[]{Effect.WOOD}, new Effect[]{});
+        var ret = t.makeAction(player2, new Effect[] { Effect.WOOD }, new Effect[] {});
         assertEquals(ret, ActionResult.FAILURE);
-        ret = t.makeAction(player1, new Effect[]{Effect.WOOD}, new Effect[]{});
+        ret = t.makeAction(player1, new Effect[] { Effect.WOOD }, new Effect[] {});
         assertEquals(ret, ActionResult.ACTION_DONE);
-        ret = t.makeAction(player1, new Effect[]{}, new Effect[]{});
+        ret = t.makeAction(player1, new Effect[] {}, new Effect[] {});
         assertEquals(ret, ActionResult.FAILURE);
     }
 }

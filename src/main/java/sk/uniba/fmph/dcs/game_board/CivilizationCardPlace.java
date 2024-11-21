@@ -13,36 +13,85 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal {
     private CivilisationCard card;
     private ArrayList<PlayerOrder> figures;
 
+    /**
+     * TODO.
+     *
+     * @param player
+     * @param figureCount
+     *
+     * @return TODO
+     */
     @Override
     public boolean placeFigures(final Player player, final int figureCount) {
         return false;
     }
 
+    /**
+     * TODO.
+     *
+     * @param player
+     * @param count
+     *
+     * @return TODO
+     */
     @Override
     public HasAction tryToPlaceFigures(final Player player, final int count) {
         return null;
     }
 
+    /**
+     * TODO.
+     *
+     * @param player
+     * @param inputResources
+     * @param outputResources
+     *
+     * @return TODO
+     */
     @Override
     public ActionResult makeAction(final Player player, final Effect[] inputResources, final Effect[] outputResources) {
         return null;
     }
 
+    /**
+     * TODO.
+     *
+     * @param player
+     *
+     * @return TODO
+     */
     @Override
     public boolean skipAction(final Player player) {
         return false;
     }
 
+    /**
+     * TODO.
+     *
+     * @param player
+     *
+     * @return TODO
+     */
     @Override
     public HasAction tryToMakeAction(final Player player) {
         return null;
     }
 
+    /**
+     * TODO.
+     *
+     * @return TODO
+     */
     @Override
     public boolean newTurn() {
         return false;
     }
 
+    /**
+     * TODO.
+     *
+     * @return TODO
+     */
     @Override
     public String state() {
         return "";

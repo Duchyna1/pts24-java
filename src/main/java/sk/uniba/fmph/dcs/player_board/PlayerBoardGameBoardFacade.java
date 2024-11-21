@@ -9,7 +9,8 @@ import sk.uniba.fmph.dcs.stone_age.InterfacePlayerBoardGameBoard;
 import java.util.Collection;
 import java.util.Optional;
 
-public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, InterfaceNewTurn, InterfacePlayerBoardGameBoard {
+public final class PlayerBoardGameBoardFacade
+        implements InterfaceFeedTribe, InterfaceNewTurn, InterfacePlayerBoardGameBoard {
     private final PlayerBoard playerBoard;
 
     private final int minusPointsForNotFeeding = -10;
@@ -156,8 +157,6 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
     public boolean hasFigures(final int count) {
         return this.playerBoard.getPlayerFigures().hasFigures(count);
     }
-
-
 
     @Override
     public void addPoints(final int points) {

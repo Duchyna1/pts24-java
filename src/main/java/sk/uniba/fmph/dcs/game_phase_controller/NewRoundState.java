@@ -9,14 +9,17 @@ import sk.uniba.fmph.dcs.stone_age.InterfaceNewTurn;
 import sk.uniba.fmph.dcs.stone_age.InterfaceFigureLocation;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
 
 public final class NewRoundState implements InterfaceGamePhaseState {
     private final InterfaceFigureLocation[] places;
-    private final InterfaceNewTurn interfaceNewTurn;
+    private PlayerOrder lastInitialization = null;
+    private final Map<PlayerOrder, InterfaceNewTurn> playerPlayerBordMap;
 
-    public NewRoundState(final InterfaceFigureLocation[] places, final InterfaceNewTurn interfaceNewTurn) {
+    public NewRoundState(final InterfaceFigureLocation[] places, final Map<PlayerOrder, InterfaceNewTurn> playerPlayerBordMap) {
         this.places = places;
-        this.interfaceNewTurn = interfaceNewTurn;
+        this.playerPlayerBordMap = playerPlayerBordMap;
     }
 
     @Override
@@ -61,12 +64,18 @@ public final class NewRoundState implements InterfaceGamePhaseState {
 
     @Override
     public HasAction tryToMakeAutomaticAction(final PlayerOrder player) {
+        // returns NO_ACTION_POSSIBLE if any of InterfaceFigureLocations indicates end of game
         for (InterfaceFigureLocation location : places) {
             if (location.newTurn()) {
                 return HasAction.NO_ACTION_POSSIBLE;
             }
         }
-        interfaceNewTurn.newTurn();
+        // initialize new round on PlayerBoard of given player
+        if (lastInitialization == player || !playerPlayerBordMap.containsKey(player)) {
+            return HasAction.NO_ACTION_POSSIBLE;
+        }
+        playerPlayerBordMap.get(player).newTurn();
+        lastInitialization = player;
         return HasAction.AUTOMATIC_ACTION_DONE;
     }
 }

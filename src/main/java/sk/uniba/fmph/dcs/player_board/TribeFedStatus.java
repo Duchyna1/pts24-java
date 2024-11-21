@@ -51,7 +51,7 @@ public class TribeFedStatus {
         }
 
         this.fields++;
-        playerResourcesAndFood.takeResources(new Effect[] {Effect.FIELD});
+        playerResourcesAndFood.giveResources(new Effect[] {Effect.FIELD});
     }
 
     /**
@@ -71,7 +71,7 @@ public class TribeFedStatus {
         if (!this.fieldsHarvested) {
             Effect[] food = new Effect[this.fields];
             Arrays.fill(food, Effect.FOOD);
-            this.playerResourcesAndFood.takeResources(food);
+            this.playerResourcesAndFood.giveResources(food);
             this.fieldsHarvested = true;
         }
     }
@@ -95,7 +95,7 @@ public class TribeFedStatus {
             return false;
         }
 
-        this.playerResourcesAndFood.giveResources(foodRequired);
+        this.playerResourcesAndFood.takeResources(foodRequired);
         this.tribeFed = true;
         return true;
     }
@@ -148,7 +148,7 @@ public class TribeFedStatus {
             }
         }
 
-        this.playerResourcesAndFood.giveResources(resources);
+        this.playerResourcesAndFood.takeResources(resources);
         this.tribeFed = true;
 
         return true;
@@ -176,7 +176,7 @@ public class TribeFedStatus {
         Effect[] oneFood = new Effect[1];
         oneFood[0] = Effect.FOOD;
         while (this.playerResourcesAndFood.hasResources(oneFood)) {
-            this.playerResourcesAndFood.giveResources(oneFood);
+            this.playerResourcesAndFood.takeResources(oneFood);
         }
 
         this.tribeFed = true;

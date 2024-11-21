@@ -25,7 +25,7 @@ public class TribeFedStatusTest {
 
     @Test
     public void testNewTurn() {
-        PlayerResourcesAndFood prf = new PlayerResourcesAndFood();
+        PlayerResourcesAndFood prf = new PlayerResourcesAndFood(0);
         TribeFedStatus tfs = new TribeFedStatus(prf, new PlayerFigures());
         for (int i = 0; i < 10; i++) {
             tfs.newTurn();
@@ -63,7 +63,7 @@ public class TribeFedStatusTest {
 
     @Test
     public void testFeedTribeIfEnoughFood() {
-        PlayerResourcesAndFood prf = new PlayerResourcesAndFood();
+        PlayerResourcesAndFood prf = new PlayerResourcesAndFood(0);
         PlayerFigures figures = new PlayerFigures();
         TribeFedStatus tfs = new TribeFedStatus(prf, figures);
 
@@ -90,7 +90,7 @@ public class TribeFedStatusTest {
 
     @Test
     public void testFeedTribe() {
-        PlayerResourcesAndFood resources = new PlayerResourcesAndFood();
+        PlayerResourcesAndFood resources = new PlayerResourcesAndFood(0);
         PlayerFigures figures = new PlayerFigures();
         TribeFedStatus tfs = new TribeFedStatus(resources, figures);
         figures.addNewFigure();
@@ -102,7 +102,7 @@ public class TribeFedStatusTest {
         Effect[] allResources = { Effect.FOOD, Effect.FOOD, Effect.GOLD, Effect.STONE, Effect.WOOD, Effect.CLAY,
                 Effect.STONE, Effect.GOLD, Effect.GOLD, Effect.GOLD, Effect.BUILDING, Effect.ONE_TIME_TOOL2,
                 Effect.ONE_TIME_TOOL3 };
-        resources.takeResources(allResources);
+        resources.giveResources(allResources);
         boolean ans = tfs.feedTribeIfEnoughFood();
         assert !ans;
         ans = tfs.feedTribe(allResources);
@@ -131,7 +131,7 @@ public class TribeFedStatusTest {
 
     @Test
     public void testSetTribeFed() {
-        PlayerResourcesAndFood resourcesAndFood = new PlayerResourcesAndFood();
+        PlayerResourcesAndFood resourcesAndFood = new PlayerResourcesAndFood(0);
         PlayerFigures figures = new PlayerFigures();
         TribeFedStatus tfs = new TribeFedStatus(resourcesAndFood, figures);
         resourcesAndFood.takeResources(new Effect[] {});
@@ -164,7 +164,7 @@ public class TribeFedStatusTest {
         assert ans;
 
         tfs.newTurn();
-        resourcesAndFood.takeResources(new Effect[] { Effect.FOOD, Effect.FOOD });
+        resourcesAndFood.giveResources(new Effect[] { Effect.FOOD, Effect.FOOD });
         ans = tfs.setTribeFed();
         assert !ans;
 
@@ -175,9 +175,9 @@ public class TribeFedStatusTest {
     @Test
     public void testIsTribeFed() {
         PlayerFigures figures = new PlayerFigures();
-        PlayerResourcesAndFood resourcesAndFood = new PlayerResourcesAndFood();
+        PlayerResourcesAndFood resourcesAndFood = new PlayerResourcesAndFood(0);
         TribeFedStatus tfs = new TribeFedStatus(resourcesAndFood, figures);
-        resourcesAndFood.takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD,
+        resourcesAndFood.giveResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD,
                 Effect.GOLD, Effect.GOLD, Effect.STONE, Effect.CLAY, Effect.WOOD });
 
         tfs.feedTribeIfEnoughFood();

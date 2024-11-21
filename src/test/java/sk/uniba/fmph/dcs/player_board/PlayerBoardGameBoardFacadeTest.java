@@ -10,12 +10,15 @@ import java.util.Collection;
 public class PlayerBoardGameBoardFacadeTest {
     @Test
     public void doNotFeedThisTurnTest() {
-        PlayerBoard pb = new PlayerBoard();
+        PlayerResourcesAndFood prf = new PlayerResourcesAndFood(0);
+        PlayerFigures pf = new PlayerFigures();
+        TribeFedStatus tfs = new TribeFedStatus(prf, pf);
+        PlayerBoard pb = new PlayerBoard(new PlayerCivilisationCards(), pf, prf, new PlayerTools(), tfs);
         PlayerBoardGameBoardFacade PBGBF = new PlayerBoardGameBoardFacade(pb);
         pb.getPlayerResourcesAndFood()
-                .takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD });
+                .giveResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD });
         pb.getPlayerResourcesAndFood()
-                .takeResources(new Effect[] { Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.WOOD });
+                .giveResources(new Effect[] { Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD, Effect.WOOD });
         boolean ans = PBGBF.doNotFeedThisTurn();
         assert !ans;
 

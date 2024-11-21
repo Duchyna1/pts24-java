@@ -8,16 +8,30 @@ import java.util.Map;
 import static java.lang.Math.max;
 
 public class PlayerResourcesAndFood {
+    private static final int DEFAULT_INITIAL_FOOD_AMOUNT = 12;
     private final Map<Effect, Integer> resources;
 
     /**
-     * Initialise resources such that every resource is zero.
+     * Initialise resources with adjustable initialFoodAmount and every other resource set to zero.
+     *
+     * @param initialFoodAmount
+     *            the initial amount of food
      */
-    public PlayerResourcesAndFood() {
+    public PlayerResourcesAndFood(final int initialFoodAmount) {
         resources = new HashMap<>();
         for (Effect res : Effect.values()) {
             resources.put(res, 0);
         }
+        if (initialFoodAmount > 0) {
+            resources.put(Effect.FOOD, initialFoodAmount);
+        }
+    }
+
+    /**
+     * Initialise resources such that there are 12 foodstuffs and every other resource is zero (by default).
+     */
+    public PlayerResourcesAndFood() {
+        this(DEFAULT_INITIAL_FOOD_AMOUNT);
     }
 
     /**
@@ -45,29 +59,14 @@ public class PlayerResourcesAndFood {
     }
 
     /**
-     * This function increases value of resource R by one for each occurrence of R in resources.
+     * Takes resources from the player's collection if they have the required quantity.
      *
      * @param resources
-     *            list of resources to be taken from board.
+     *            the array of resources to be taken from the player.
      *
-     * @return true - always. Something else should check if player can take resource.
+     * @return true if the resources were successfully taken, false otherwise.
      */
     public boolean takeResources(final Effect[] resources) {
-        for (Effect resource : resources) {
-            this.resources.put(resource, this.resources.get(resource) + 1);
-        }
-        return true;
-    }
-
-    /**
-     * .
-     *
-     * @param resources
-     *            - list of resources listed in Effect.
-     *
-     * @return true if player has at least one resource of each resource listed in resources.
-     */
-    public boolean giveResources(final Effect[] resources) {
         if (this.hasResources(resources)) {
             for (Effect resource : resources) {
                 this.resources.put(resource, max(this.resources.get(resource) - 1, 0));
@@ -78,12 +77,29 @@ public class PlayerResourcesAndFood {
     }
 
     /**
+     * Adds the specified resources to the player's collection.
+     *
+     * @param resources
+     *            the array of resources to be added.
+     *
+     * @return true if the resources were successfully added, false otherwise.
+     */
+    public boolean giveResources(final Effect[] resources) {
+        for (Effect resource : resources) {
+            this.resources.put(resource, this.resources.get(resource) + 1);
+        }
+        return true;
+    }
+
+    /**
      * @return number of points player has from resources.
      */
     public int numberOfResourcesForFinalPoints() {
         int ans = 0;
         for (Effect res : resources.keySet()) {
-            ans += res.points() * resources.get(res);
+            if (res.isResource()) {
+                ans += resources.get(res);
+            }
         }
         return ans;
     }

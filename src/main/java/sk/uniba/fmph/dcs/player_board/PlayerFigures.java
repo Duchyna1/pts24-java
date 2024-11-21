@@ -5,16 +5,32 @@ public class PlayerFigures {
     private int figures;
     private boolean canAddFigure;
 
-    private final int startingFigures = 5;
+    private static final int DEFAULT_STARTING_FIGURES = 5;
+    private final int startingFigures;
     private final int maxFigurines = 10;
 
     /**
-     * Give player 5 starting figures.
+     * Universal constructor with adjustable number of starting figures.
+     *
+     * @param startingFigures
+     *            number of starting figures
      */
-    public PlayerFigures() {
+    public PlayerFigures(final int startingFigures) {
+        if (startingFigures < 0) {
+            this.startingFigures = 0;
+        } else {
+            this.startingFigures = Math.min(startingFigures, maxFigurines);
+        }
         this.totalFigures = this.startingFigures;
         this.figures = this.startingFigures;
         this.canAddFigure = true;
+    }
+
+    /**
+     * Give player 5 starting figures by default.
+     */
+    public PlayerFigures() {
+        this(DEFAULT_STARTING_FIGURES);
     }
 
     /**

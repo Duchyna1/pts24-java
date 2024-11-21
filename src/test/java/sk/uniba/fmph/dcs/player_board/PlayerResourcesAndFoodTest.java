@@ -3,11 +3,13 @@ package sk.uniba.fmph.dcs.player_board;
 import org.junit.Test;
 import sk.uniba.fmph.dcs.stone_age.Effect;
 
+import java.util.Arrays;
+
 public class PlayerResourcesAndFoodTest {
     @Test
-    public void test_takingResources() {
-        PlayerResourcesAndFood playerResourcesAndFood = new PlayerResourcesAndFood();
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.GOLD });
+    public void test_givingResources() {
+        PlayerResourcesAndFood playerResourcesAndFood = new PlayerResourcesAndFood(0);
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.GOLD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.FOOD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.GOLD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.GOLD, Effect.FOOD });
@@ -21,57 +23,65 @@ public class PlayerResourcesAndFoodTest {
     }
 
     @Test
-    public void test_givingResources() {
-        PlayerResourcesAndFood playerResourcesAndFood = new PlayerResourcesAndFood();
+    public void test_takingResources() {
+        PlayerResourcesAndFood playerResourcesAndFood = new PlayerResourcesAndFood(0);
         playerResourcesAndFood
-                .takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.STONE, Effect.GOLD });
+                .giveResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.STONE, Effect.GOLD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.FOOD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.STONE });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.GOLD });
 
-        playerResourcesAndFood.giveResources(new Effect[] { Effect.FOOD });
+        playerResourcesAndFood.takeResources(new Effect[] { Effect.FOOD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.FOOD, Effect.FOOD });
         assert !playerResourcesAndFood.hasResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.STONE });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.GOLD });
 
-        playerResourcesAndFood.giveResources(new Effect[] { Effect.FOOD, Effect.STONE });
+        playerResourcesAndFood.takeResources(new Effect[] { Effect.FOOD, Effect.STONE });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.FOOD });
         assert !playerResourcesAndFood.hasResources(new Effect[] { Effect.FOOD, Effect.FOOD });
         assert !playerResourcesAndFood.hasResources(new Effect[] { Effect.STONE });
         assert playerResourcesAndFood.hasResources(new Effect[] { Effect.GOLD });
 
-        assert !playerResourcesAndFood.giveResources(new Effect[] { Effect.CLAY });
+        assert !playerResourcesAndFood.takeResources(new Effect[] { Effect.CLAY });
     }
 
     @Test
     public void test_numberOfResourcesForFinalPoints() {
-        PlayerResourcesAndFood playerResourcesAndFood = new PlayerResourcesAndFood();
+        PlayerResourcesAndFood playerResourcesAndFood = new PlayerResourcesAndFood(0);
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == 0;
         int sum = 0;
 
-        sum += 2;
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.FOOD });
+        sum += 0;
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.FOOD });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 3;
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.WOOD });
+        sum += 1;
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.WOOD });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 4;
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.CLAY });
+        sum += 1;
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.CLAY });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 5;
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.STONE });
+        sum += 1;
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.STONE });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        sum += 6;
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.GOLD });
+        sum += 1;
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.GOLD });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
 
-        playerResourcesAndFood.takeResources(new Effect[] { Effect.TOOL, Effect.FIELD, Effect.BUILDING,
+        playerResourcesAndFood.giveResources(new Effect[] { Effect.TOOL, Effect.FIELD, Effect.BUILDING,
                 Effect.ONE_TIME_TOOL2, Effect.ONE_TIME_TOOL3, Effect.ONE_TIME_TOOL4 });
         assert playerResourcesAndFood.numberOfResourcesForFinalPoints() == sum;
+    }
+
+    @Test
+    public void defaultFoodAmountTest() {
+        PlayerResourcesAndFood prf = new PlayerResourcesAndFood();
+        Effect[] twelveFoods = new Effect[12];
+        Arrays.fill(twelveFoods, Effect.FOOD);
+        assert prf.hasResources(twelveFoods);
     }
 }

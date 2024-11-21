@@ -7,13 +7,16 @@ import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
 public class PlayerBoardTest {
     @Test
     public void newTurnTest() {
-        PlayerBoard pb = new PlayerBoard();
+        PlayerResourcesAndFood prf = new PlayerResourcesAndFood(0);
+        PlayerFigures pf = new PlayerFigures();
+        TribeFedStatus tfs = new TribeFedStatus(prf, pf);
+        PlayerBoard pb = new PlayerBoard(new PlayerCivilisationCards(), pf, prf, new PlayerTools(), tfs);
         pb.getPlayerFigures().addNewFigure();
         pb.getTribeFedStatus().addField();
         pb.getPlayerTools().addTool();
         assert !pb.getTribeFedStatus().isTribeFed();
         pb.getPlayerResourcesAndFood()
-                .takeResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD });
+                .giveResources(new Effect[] { Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD });
         boolean ans = pb.getTribeFedStatus().feedTribeIfEnoughFood();
         assert ans;
         assert pb.getPlayerFigures().getTotalFigures() == 6;
@@ -64,13 +67,13 @@ public class PlayerBoardTest {
             pb.getTribeFedStatus().addField();
             pb.newTurn();
         } // 4 fields
-        expectedPoints += 20;
+      
         pb.addHouse();
         pb.addHouse(); // 2 houses
         pb.getPlayerResourcesAndFood()
-                .takeResources(new Effect[] { Effect.FOOD, Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD });
-        // 2 + 3 + 4 + 5 + 6 = 20
-        expectedPoints += 20;
+                .giveResources(new Effect[] { Effect.FOOD, Effect.WOOD, Effect.CLAY, Effect.STONE, Effect.GOLD });
+        // 4 resources
+        expectedPoints += 4;
 
         pb.getPlayerCivilisationCards()
                 .addEndOfGameEffects(new EndOfGameEffect[] { EndOfGameEffect.SHAMAN, EndOfGameEffect.SHAMAN });

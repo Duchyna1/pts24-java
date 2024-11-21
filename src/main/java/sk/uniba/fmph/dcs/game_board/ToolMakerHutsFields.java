@@ -174,12 +174,10 @@ public class ToolMakerHutsFields {
     }
 
     /**
-     * reset class so that it can work on new turn.
+     * @return true if all actions are resolved and next turn can start
      */
-    public void newTurn() {
-        toolMakerFigures.clear();
-        hutFigures.clear();
-        fieldsFigures.clear();
+    public boolean newTurn() {
+        return toolMakerFigures.isEmpty() && hutFigures.isEmpty() && fieldsFigures.isEmpty();
     }
 
     /**
